@@ -1,34 +1,25 @@
-import React, { useState, useContext } from 'react';
-import { AuthContext } from '../app/App'
-import { setToken } from '../../helpers/authHelpers'
+import React, { useState } from 'react';
+import { connect } from 'react-redux' 
+import { useHistory } from 'react-router-dom'
+import { loginUser } from '../../actions/auth'
 
 
-function Login({ setCurrentUser }){
+function Login({ loginUser, currentUser }){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
 
-  const currentUser = useContext(AuthContext)
+  const history = useHistory()
 
   function handleLogin(e) {
     e.preventDefault()
-    fetch('http://localhost:3001/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({user: {email: email, password: password}})
-    })
+    loginUser({email: email, password: password})
     .then(res => {
-        if (res.ok) {
-          setToken(res.headers.get("Authorization"))
-          res.json()
-          .then((json) => setCurrentUser(json.data))
-        } else {
-          res.json()
-          .then(json => setError(json.error))
-        }
+      if (res.status.code === 200) {
+        history.push('/dashboard')
+      } else {
+        setError(res)
+      }
     })
   }
 
@@ -63,4 +54,8 @@ function Login({ setCurrentUser }){
   )
 }
 
-export default Login;
+export default connect(state => {
+  return {
+    currentUser: state.auth.currentUser
+  }
+}, { loginUser })(Login);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,6 +9,8 @@ import UsersContainer from '../users/UsersContainer'
 import SignUp from '../sessions/SignUp'
 import Login from '../sessions/Login'
 import Dashboard from '../dashboard/Dashboard'
+import NavBar from '../app/NavBar'
+import withAuth from '../auth/withAuth'
 
 class DebugRouter extends Router {
   constructor(props){
@@ -23,42 +25,22 @@ class DebugRouter extends Router {
   }
 }
 
-export const AuthContext = React.createContext()
-
-export const getToken = () => {
-  const now = new Date(Date.now()).getTime();
-  const thirtyMinutes = 1000 * 60 * 30;
-  const timeSinceLastLogin = now - localStorage.getItem("lastLoginTime");
-  if (timeSinceLastLogin < thirtyMinutes) {
-    return localStorage.getItem("token");
-  }
-};
-
-function App() {  
-  const [currentUser, setCurrentUser] = useState(null)
-
+function App() {
   return (
     <DebugRouter>
       <Router>
-        <AuthContext.Provider value={currentUser}>
-          <Switch>
-            <Route exact path="/" />
-            <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
-            <Route 
-              path="/login" 
-              render={routerProps => <Login 
-                {...routerProps} 
-                setCurrentUser={(user) => setCurrentUser(user)}
-              />}
-            />
-            <Route path="/dashboard" render={routerProps => <Dashboard {...routerProps}/>}/>
-            <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>          
-          </Switch>
-        </AuthContext.Provider>
+        <NavBar />
+        <Switch>
+          <Route exact path="/" />
+          <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
+          <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
+          <Route path="/dashboard" component={withAuth(Dashboard)}/>
+          <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>          
+        </Switch>
       </Router>
     </DebugRouter>
   );
 }
 
-export default App;
+export default App
 
