@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../app/App'
 
 const setToken = (token) => {
   localStorage.setItem("token", token);
@@ -8,6 +9,8 @@ const setToken = (token) => {
 function Login({ setCurrentUser }){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const currentUser = useContext(AuthContext)
 
   function handleLogin(e) {
     e.preventDefault()
@@ -19,8 +22,13 @@ function Login({ setCurrentUser }){
       },
       body: JSON.stringify({user: {email: email, password: password}})
     })
-    .then(res => res.json())
-    .then(json => console.log(json))
+    .then(res => {
+        if (res.ok) {
+          setToken(res.headers.get("Authorization"))
+        }
+        res.json()
+        .then((json) => setCurrentUser(json.data))
+    })
   }
 
   return (
@@ -45,6 +53,10 @@ function Login({ setCurrentUser }){
           <br /><br />
         <input type="submit" value="LOG IN"/>
       </form>
+      <div>
+        Current User: <br />
+        {currentUser ? currentUser.email : 'none'}
+      </div>
     </div>
   )
 }
