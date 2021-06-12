@@ -1,5 +1,5 @@
 import React from 'react';
-import Hobbies from './Hobbies'
+import Hobbies from '../hobbies/Hobbies'
 
 function UserProfile(){
   return (
