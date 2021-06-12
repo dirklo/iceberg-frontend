@@ -1,4 +1,4 @@
-
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,7 +7,9 @@ import {
 import './App.css';
 import UsersContainer from '../users/UsersContainer'
 import SignUp from '../sessions/SignUp'
-import React from 'react';
+import Login from '../sessions/Login'
+import Dashboard from '../dashboard/Dashboard'
+
 
 class DebugRouter extends Router {
   constructor(props){
@@ -30,6 +32,8 @@ function App() {
           <Route exact path="/">
           </Route>
           <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
+          <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
+          <Route path="/dashboard" render={routerProps => <Dashboard {...routerProps}/>}/>
           <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>          
         </Switch>
       </Router>
