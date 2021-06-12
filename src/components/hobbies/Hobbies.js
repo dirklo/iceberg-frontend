@@ -28,15 +28,20 @@ const Hobbies = () => {
     }
   ])
 
-  //Add Hobby
-  const addHobby = (hobby) => {
-    console.log("addHobby in Hobbies", hobby)
+  const addHobby = (data) => { 
     const id = Math.floor(Math.random() * 10000) + 1
-    const newHobby = {id, hobby}
-    setUserHobbies([...userHobbies], newHobby)
-    console.log("userHobbies:", userHobbies, "newHobby:", newHobby);
-  }
+    const newHobby = {id, name: data}
+    hobbyExists(userHobbies, data) === undefined && setUserHobbies([...userHobbies, newHobby]);
+    hobbyExists(hobbiesList, data) === undefined && setHobbiesList([...hobbiesList, newHobby]);  
+  };
 
+  const hobbyExists = (data, find) => {
+    return data.find(element => element.name === find)
+  }
+  
+
+  //Add Hobby  
+  console.log("userHobbies:", userHobbies, "hobbiesList:", hobbiesList)
   return (
     <div>
       <h1>Hobbies</h1>
