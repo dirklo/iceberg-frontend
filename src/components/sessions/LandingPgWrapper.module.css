@@ -1,0 +1,40 @@
+.Background {
+  min-height: 100vh;
+  width: 100%;
+  background: rgb(17,132,168);
+  background: linear-gradient(357deg, rgba(17,132,168,1) 30%, rgba(17,142,182,1) 51%, rgba(61,191,228,1) 100%);
+}
+
+input {
+  color: #fff;
+  width: 270px;
+  height: 18px;
+  padding: .25rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #FFFFFF;
+  font-size: initial;
+}
+
+a, input[type="submit"] {
+  margin-top: .5rem;
+}
+
+.Content {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  position: absolute;
+  right: 10%;
+  top: 12%;
+  width: 40%;
+  padding: 2rem;
+}
+
+.Iceberg {
+  position: absolute;
+  top: -25px;
+  left: 10px;
+  max-height: 90vh;
+  width: 40%;
+}

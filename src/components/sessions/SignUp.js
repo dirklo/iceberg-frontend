@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { signupUser } from '../../actions/auth'
-
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { signupUser } from '../../actions/auth';
+import LandingPgWrapper from './LandingPgWrapper';
+import btnStyles from '../button/button.module.css';
+import {Link} from 'react-router-dom';
 
 function Login({ signupUser }){
   const [firstName, setFirstName] = useState('')
@@ -18,10 +20,10 @@ function Login({ signupUser }){
   function handleLogin(e) {
     e.preventDefault()
     signupUser({
-      first_name: firstName,
-      last_name: lastName,
+      // first_name: firstName,
+      // last_name: lastName,
       username: username,
-      email: email, 
+      // email: email, 
       password: password
     })
     .then(res => {
@@ -34,11 +36,10 @@ function Login({ signupUser }){
   }
 
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <LandingPgWrapper >
       <div>{error ? error : null}</div>
       <form action="" onSubmit={(e) => handleLogin(e)}>
-        <label htmlFor="first-name">First Name</label> <br />
+        {/* <label htmlFor="first-name">First Name</label> <br />
         <input 
           name="first-name" 
           type="text"
@@ -46,17 +47,17 @@ function Login({ signupUser }){
           value={firstName}
           required
         />
-        <br /><br />
-        <label htmlFor="last-name">Last Name</label> <br />
+        <br /><br /> */}
+        {/* <label htmlFor="last-name">Last Name</label> <br />
         <input 
           name="last-name" 
           type="text"
           onChange={(e) => setLastName(e.target.value)}
           value={lastName}
           required
-        />
-        <br /><br />
-        <label htmlFor="username">username</label> <br />
+        /> */}
+        {/* <br /><br /> */}
+        <label htmlFor="username">Username</label> <br />
         <input 
           name="username" 
           type="username" 
@@ -65,7 +66,7 @@ function Login({ signupUser }){
           required
           />
           <br /><br />
-        <label htmlFor="email">Email</label> <br />
+        {/* <label htmlFor="email">Email</label> <br />
         <input 
           name="email" 
           type="email" 
@@ -73,7 +74,7 @@ function Login({ signupUser }){
           value={email}
           required
           />
-          <br /><br />
+          <br /><br /> */}
           <label htmlFor="password">Password</label> <br />
         <input 
           name="password" 
@@ -92,9 +93,10 @@ function Login({ signupUser }){
           required
           />
           <br /><br />
-        <input type="submit" value="LOG IN"/>
+        <input className={`${btnStyles.Btn} ${btnStyles["Primary-inverse"]}`} type="submit" value="Sign up"/>
+        <Link className={`${btnStyles.Btn} ${btnStyles["Secondary-inverse"]}`} to="/login">Login</Link>
       </form>
-    </div>
+      </LandingPgWrapper>
   )
 }
 
