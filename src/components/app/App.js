@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import UsersContainer from '../users/UsersContainer'
+import SignUp from '../sessions/SignUp'
 import React from 'react';
 
 class DebugRouter extends Router {
@@ -28,7 +29,8 @@ function App() {
         <Switch>
           <Route exact path="/">
           </Route>
-          <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>
+          <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
+          <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>          
         </Switch>
       </Router>
     </DebugRouter>
