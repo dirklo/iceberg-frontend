@@ -31,46 +31,44 @@ function App() {
   return (
 
 
-    <div className="demo-big-content">
-    <Layout>
-        <Header title="Title" scroll>
-            <Navigation>
-                <Link to ="/">Link</Link>
-                <Link to ="/signup">Link</Link>
-                <Link to ="/">Link</Link>
-                <Link to ="/">Link</Link>
+ 
+
+
+    <DebugRouter>
+      <Router>
+
+      <Layout>
+        <Header title="IceBerg" className="header" scroll>
+            <Navigation>  
+                <Link to ="/connect">Connect</Link>
+                <Link to ="/profile">Profile</Link>
+                <Link to ="/logout">Logout</Link>
             </Navigation>
         </Header>
-        <Drawer title="Title">
-            <Navigation>
-                <Link to ="/">Link</Link>
-                <Link to ="/">Link</Link>
-                <Link to ="/">Link</Link>
-                <Link to ="/">Link</Link>
-            </Navigation>
-        </Drawer>
+      
         <Content>
             <div className="page-content" />
         </Content>
     </Layout>
-</div>
 
-
-
-    // <DebugRouter>
-    //   <Router>
-    //     {/* <NavBar /> */}
+        {/* <NavBar /> */}
         
-    //     <Switch>
-    //       <Route exact path="/" />
-    //       <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
-    //       <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
-    //       <Route path="/dashboard" component={withAuth(Dashboard)}/> 
-    //       {/* update to dashboard connect route so its consistent. */}
-    //       <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>          
-    //     </Switch>
-    //   </Router>
-    // </DebugRouter>
+        <Switch>
+          <Route exact path="/" />
+          <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
+          <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
+          <Route path="/dashboard" component={withAuth(Dashboard)}/> 
+          {/* update to dashboard connect route so its consistent. */}
+          <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>          
+        </Switch>
+      </Router>
+    </DebugRouter>
+
+
+
+
+
+
   );
 }
 
