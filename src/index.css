@@ -14,3 +14,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* CSS variables - access in other files using var(--variable-name) */
+:root {
+  --color-main: #0C789A;
+  --color-dark: #095A73;
+  --color-light: #EAFAFF;
+  --gray-main: #C4C4C4;
+  --gray-light: #F7F7F7;
+}
