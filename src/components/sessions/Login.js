@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux' 
-import { useHistory } from 'react-router-dom'
-import { loginUser } from '../../actions/auth'
-
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { loginUser } from '../../actions/auth';
+import LandingPgWrapper from './LandingPgWrapper';
+import btnStyles from '../button/button.module.css';
+import { Link } from 'react-router-dom';
 
 function Login({ loginUser, currentUser }){
   const [email, setEmail] = useState('')
@@ -24,8 +26,7 @@ function Login({ loginUser, currentUser }){
   }
 
   return (
-    <div>
-      <h1>Login</h1>
+    <LandingPgWrapper>
       <div>{error ? error : null}</div>
       <form action="" onSubmit={(e) => handleLogin(e)}>
         <label htmlFor="email">Email</label> <br />
@@ -44,13 +45,15 @@ function Login({ loginUser, currentUser }){
           value={password}
           />
           <br /><br />
-        <input type="submit" value="LOG IN"/>
+        <input className={`${btnStyles.Btn} ${btnStyles["Primary-inverse"]}`} type="submit" value="Login"/>
+        <Link className={`${btnStyles.Btn} ${btnStyles["Secondary-inverse"]}`} to="/signup">Sign up</Link>
       </form>
-      <div>
+
+      {/* <div>
         Current User: <br />
         {currentUser ? currentUser.email : 'none'}
-      </div>
-    </div>
+      </div> */}
+    </LandingPgWrapper>
   )
 }
 
