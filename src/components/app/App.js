@@ -9,7 +9,8 @@ import UsersContainer from '../users/UsersContainer'
 import SignUp from '../sessions/SignUp'
 import Login from '../sessions/Login'
 import Dashboard from '../dashboard/Dashboard'
-
+import NavBar from '../app/NavBar'
+import withAuth from '../auth/withAuth'
 
 class DebugRouter extends Router {
   constructor(props){
@@ -24,16 +25,16 @@ class DebugRouter extends Router {
   }
 }
 
-function App() {  
+function App() {
   return (
     <DebugRouter>
       <Router>
+        <NavBar />
         <Switch>
-          <Route exact path="/">
-          </Route>
+          <Route exact path="/" />
           <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
           <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
-          <Route path="/dashboard" render={routerProps => <Dashboard {...routerProps}/>}/>
+          <Route path="/dashboard" component={withAuth(Dashboard)}/>
           <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>          
         </Switch>
       </Router>
@@ -41,5 +42,5 @@ function App() {
   );
 }
 
-export default App;
+export default App
 
