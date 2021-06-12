@@ -1,0 +1,46 @@
+.Btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 16px;
+  padding: .5rem 2.5rem;
+  font-weight: 600;
+  height: initial;
+  font-size: initial;
+  transition: 0.3s linear;
+  width: initial;
+  margin-right: 1rem;
+}
+
+a.Btn {
+ color: #fff; 
+ text-decoration: none;
+}
+
+.Primary {
+  background-color: var(--color-main);
+  color: #fff;
+}
+
+.Primary:hover {
+  background-color: var(--color-dark);
+}
+
+.Secondary-inverse {
+  border: 1.5px solid #fff;
+}
+
+.Secondary-inverse:hover {
+  background-color: #fff;
+  color: var(--color-main);
+}
+
+.Primary-inverse {
+  background-color: #fff;
+  border: 1.5px solid #fff;
+  color: var(--color-main);
+}
+
+.Primary-inverse:hover {
+  background-color: var(--color-main);
+  color: #fff;
+}
