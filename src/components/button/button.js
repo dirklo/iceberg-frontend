@@ -14,3 +14,5 @@ function Button({onClick, style, text}) {
     </button>
   )
 }
+
+export default Button;
