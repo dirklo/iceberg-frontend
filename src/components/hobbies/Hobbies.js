@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import Hobby from './Hobby'
+import AddHobby from './AddHobby'
 
 
 const Hobbies = () => {
@@ -27,12 +28,25 @@ const Hobbies = () => {
     }
   ])
 
+  //Add Hobby
+  const addHobby = (hobby) => {
+    console.log("addHobby in Hobbies", hobby)
+    const id = Math.floor(Math.random() * 10000) + 1
+    const newHobby = {id, hobby}
+    setUserHobbies([...userHobbies], newHobby)
+    console.log("userHobbies:", userHobbies, "newHobby:", newHobby);
+  }
+
   return (
     <div>
       <h1>Hobbies</h1>
+
       {userHobbies.map((hobby) => (
-        <Hobby hobby={hobby}/>
+        <React.Fragment key={hobby.id}>
+          <Hobby hobby={hobby}/>
+        </React.Fragment>
       ))}
+      <AddHobby hobbiesList={hobbiesList} addHobby={addHobby}/>
     </div>
   )
 }
