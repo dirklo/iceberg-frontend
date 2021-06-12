@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -26,18 +26,26 @@ class DebugRouter extends Router {
 export const AuthContext = React.createContext()
 
 function App() {  
+  const [currentUser, setCurrentUser] = useState(null)
+
   return (
     <DebugRouter>
       <Router>
-        <AuthContext.provider value={currentUser}>
+        <AuthContext.Provider value={currentUser}>
           <Switch>
             <Route exact path="/" />
             <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
-            <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
+            <Route 
+              path="/login" 
+              render={routerProps => <Login 
+                {...routerProps} 
+                setCurrentUser={(user) => setCurrentUser(user)}
+              />}
+            />
             <Route path="/dashboard" render={routerProps => <Dashboard {...routerProps}/>}/>
             <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>          
           </Switch>
-        </AuthContext.provider>
+        </AuthContext.Provider>
       </Router>
     </DebugRouter>
   );
