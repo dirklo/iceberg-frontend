@@ -11,6 +11,7 @@ import Login from '../sessions/Login'
 import Dashboard from '../dashboard/Dashboard'
 import NavBar from '../app/NavBar'
 import withAuth from '../auth/withAuth'
+import {Layout, Header, Navigation, Drawer, Content} from 'react-mdl'
 
 class DebugRouter extends Router {
   constructor(props){
