@@ -7,7 +7,7 @@ function Dashboard(){
   return(
     <div>
       <h1>Dashboard</h1>
-      <h2>current User is: {currentUser}</h2>
+      <h2>current User is: {currentUser.username}</h2>
     </div>
   )
 }
