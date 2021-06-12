@@ -1,25 +1,12 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Hobby from './Hobby'
 import AddHobby from './AddHobby'
+const backendUrl = 'http://localhost:3001/'
 
 
 const Hobbies = () => {
-  const [hobbiesList, setHobbiesList] = useState([
-      {
-        id: 1,
-        name: "swimming"
-      },
-      {
-        id: 2,
-        name: "cycling"
-      },
-      {
-        id: 3,
-        name: "running",
-      }
-    ]
-  )
+  const [hobbiesList, setHobbiesList] = useState([])
 
   const [userHobbies, setUserHobbies] = useState([
     {
@@ -37,6 +24,21 @@ const Hobbies = () => {
 
   const hobbyExists = (data, find) => {
     return data.find(element => element.name === find)
+  }
+
+  useEffect(() => {
+    const getHobbies = async () => {
+      const hobbiesFromServer = await fetchHobbies()
+      setHobbiesList(hobbiesFromServer)
+    }
+    getHobbies()
+  }, [])
+
+  //Fetch Hobbies
+  const fetchHobbies = async () => {
+    const res = await fetch(`${backendUrl}/hobbies`)
+    const data = await res.json()
+    return data.hobbies;
   }
   
 
