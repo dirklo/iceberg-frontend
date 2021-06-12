@@ -25,15 +25,6 @@ a.Btn {
   background-color: var(--color-dark);
 }
 
-.Secondary-inverse {
-  border: 1.5px solid #fff;
-}
-
-.Secondary-inverse:hover {
-  background-color: #fff;
-  color: var(--color-main);
-}
-
 .Primary-inverse {
   background-color: #fff;
   border: 1.5px solid #fff;
@@ -44,3 +35,24 @@ a.Btn {
   background-color: var(--color-main);
   color: #fff;
 }
+
+.Secondary {
+  border: 1.5px solid var(--color-main);
+  color: var(--color-main);
+}
+
+.Secondary:hover {
+  border: 1.5px solid var(--color-main);
+  background-color: var(--color-main);
+  color: #fff;
+}
+
+.Secondary-inverse {
+  border: 1.5px solid #fff;
+}
+
+.Secondary-inverse:hover {
+  background-color: #fff;
+  color: var(--color-main);
+}
+
