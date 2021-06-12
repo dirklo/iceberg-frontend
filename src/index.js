@@ -9,11 +9,11 @@ import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
