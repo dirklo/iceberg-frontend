@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../app/App'
 
 function Login(){
   return (
@@ -7,4 +8,5 @@ function Login(){
     </div>
   )
 }
+
 export default Login;

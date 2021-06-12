@@ -10,7 +10,6 @@ import SignUp from '../sessions/SignUp'
 import Login from '../sessions/Login'
 import Dashboard from '../dashboard/Dashboard'
 
-
 class DebugRouter extends Router {
   constructor(props){
     super(props);
@@ -24,18 +23,21 @@ class DebugRouter extends Router {
   }
 }
 
+export const AuthContext = React.createContext()
+
 function App() {  
   return (
     <DebugRouter>
       <Router>
-        <Switch>
-          <Route exact path="/">
-          </Route>
-          <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
-          <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
-          <Route path="/dashboard" render={routerProps => <Dashboard {...routerProps}/>}/>
-          <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>          
-        </Switch>
+        <AuthContext.provider value={currentUser}>
+          <Switch>
+            <Route exact path="/" />
+            <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
+            <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
+            <Route path="/dashboard" render={routerProps => <Dashboard {...routerProps}/>}/>
+            <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>          
+          </Switch>
+        </AuthContext.provider>
       </Router>
     </DebugRouter>
   );
