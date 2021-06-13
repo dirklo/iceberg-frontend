@@ -9,7 +9,7 @@ const Food = ({ food, deleteFood }) => {
   return (
     <div>
       <h3>
-        {food.name} <DeleteButton id={food.id} deleteFood={food.id, onDelete}/>
+        {food.name} <DeleteButton id={food.id} deleteFood={onDelete}/>
       </h3>
     </div>
   )
