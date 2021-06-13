@@ -18,7 +18,7 @@ function Login({ loginUser }){
     loginUser({email: email, password: password})
     .then(res => {
       if (res.status.code === 200) {
-        history.push('/dashboard')
+        history.push('/profile')
       } else {
         setError(res)
       }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,10 +10,10 @@ import UsersContainer from '../users/UsersContainer'
 import SignUp from '../sessions/SignUp'
 import Login from '../sessions/Login'
 import Dashboard from '../dashboard/Dashboard'
-// import NavBar from '../app/NavBar'
 import withAuth from '../auth/withAuth'
 import {Link} from "react-router-dom"
 import {Layout, Header, Navigation, Content} from 'react-mdl'
+import { logoutUser } from '../../actions/auth'
 
 class DebugRouter extends Router {
   constructor(props){
@@ -27,31 +28,38 @@ class DebugRouter extends Router {
   }
 }
 
-function App() {
+(function debug() {
+  document.addEventListener('click', (e) => {
+    console.log(e.target)
+  })
+})()
+
+function App({ logoutUser }) {
   return (
-
-
- 
-
 
     <DebugRouter>
       <Router>
-
-      <Layout>
-        <Header title="IceBerg" className="header" scroll>
-            <Navigation>  
-                <Link to ="/connect">Connect</Link>
-                <Link to ="/profile">Profile</Link>
-                <Link to ="/logout">Logout</Link>
-            </Navigation>
-        </Header>
-      
-        <Content>
-            <div className="page-content" />
-        </Content>
-    </Layout>
-
-        {/* <NavBar /> */}
+        <Layout>
+          <Header title="IceBerg" className="header" scroll>
+              <Navigation>  
+                  <Link to ="/connect">Connect</Link>
+                  <Link to ="/profile">Profile</Link>
+                  <button
+                    type='button'
+                    onClick={(e) => {
+                      e.preventDefault()
+                      logoutUser()
+                    }}
+                  >
+                      Logout
+                  </button>
+              </Navigation>
+          </Header>
+        
+          <Content>
+              <div className="page-content" />
+          </Content>
+        </Layout>
         
         <Switch>
           <Route exact path="/" />
@@ -64,13 +72,8 @@ function App() {
       </Router>
     </DebugRouter>
 
-
-
-
-
-
   );
 }
 
-export default App
+export default connect(null, { logoutUser })(App)
 

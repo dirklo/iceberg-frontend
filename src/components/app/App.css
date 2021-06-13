@@ -50,3 +50,9 @@ background: linear-gradient(90deg, #0C789A 1.54%, rgba(95, 197, 230, 0.97) 98.72
 .mdl-layout__content {
   pointer-events: none;
 }
+
+.mdl-navigation__link {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
