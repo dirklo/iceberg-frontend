@@ -7,14 +7,15 @@ import Button from '../button/button';
 import ProfileList from './ProfileList';
 import { FaEnvelope } from 'react-icons/fa';
 import { FaPhoneAlt } from 'react-icons/fa';
+import reactDom from 'react-dom';
 
 function UserProfile({ currentUser }){
   return (
-    <>
+    <React.Fragment>
       {currentUser &&
         <SplitPane 
           left={
-            <>
+            <React.Fragment>
             {/* tried to reference currentUser.image, but the links from faker seem to be broken */}
             {/* just using standard image */}
             <ProfileImage /> 
@@ -43,10 +44,10 @@ function UserProfile({ currentUser }){
                   <FaEnvelope className={styles.Icon}/>
                   <FaPhoneAlt className={styles.Icon}/>
                 </div>
-            </>
+            </React.Fragment>
           }
           right={
-            <>
+            <React.Fragment>
               <div className={styles.About}>
                 <div className={styles.TitleBlock}>
                   <h1>Deep Dive</h1>
@@ -63,11 +64,11 @@ function UserProfile({ currentUser }){
               <ProfileList name={"Hobbies"} listArr={currentUser.hobbies}/>
               <ProfileList name={"Favorite foods"} listArr={currentUser.foods}/>
               <ProfileList />
-            </>
+            </React.Fragment>
           }
         />
       }
-    </>
+    </React.Fragment>
   )
 }
 
@@ -91,5 +92,3 @@ export default connect(state => {
     currentUser: state.auth.currentUser
   }
 })(UserProfile);
-
-// export default UserProfile;
