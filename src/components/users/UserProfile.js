@@ -60,8 +60,8 @@ function UserProfile({ currentUser }){
                 </p>
               </div>
               {/* Pass in a 'listArr' prop to the Hobbies and Foods lists */}
-              <ProfileList name={"Hobbies"}/>
-              <ProfileList name={"Favorite foods"}/>
+              <ProfileList name={"Hobbies"} listArr={currentUser.hobbies}/>
+              <ProfileList name={"Favorite foods"} listArr={currentUser.foods}/>
               <ProfileList />
             </>
           }

@@ -9,7 +9,7 @@ function ProfileList({name, listArr}) {
       <h2>{name}</h2>
       <div className={styles.ProfileList}>
         {listArr.map(item => {
-          return <ProfileListItem text={item.text} key={item.id} />
+          return <ProfileListItem text={item.name} key={item.id} />
         })}
       </div>
     </div>
@@ -18,7 +18,7 @@ function ProfileList({name, listArr}) {
 
 ProfileList.defaultProps = {
   name: "I can answer questions about...",
-  listArr: [{id: 1, text: "React"}, {id: 2, text: "Rails"}, {id: 3, text: "Printer issues"}]
+  listArr: [{id: 1, name: "React"}, {id: 2, name: "Rails"}, {id: 3, name: "Printer issues"}]
 }
 
 export default ProfileList;
