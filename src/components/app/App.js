@@ -12,7 +12,8 @@ import Dashboard from '../dashboard/Dashboard'
 import NavBar from '../app/NavBar'
 import withAuth from '../auth/withAuth'
 import {Link} from "react-router-dom"
-import {Layout, Header, Navigation, Drawer, Content} from 'react-mdl'
+import {Layout, Header, Navigation, Content} from 'react-mdl'
+import {Connect} from './dashboard'
 
 class DebugRouter extends Router {
   constructor(props){
@@ -36,7 +37,6 @@ function App() {
 
     <DebugRouter>
       <Router>
-
       <Layout>
         <Header title="IceBerg" className="header" scroll>
             <Navigation>  
@@ -46,11 +46,11 @@ function App() {
             </Navigation>
         </Header>
       
-        <Content>
+        {/* <Content>
             <div className="page-content" />
-        </Content>
+        </Content> */}
     </Layout>
-
+        
         {/* <NavBar /> */}
         
         <Switch>

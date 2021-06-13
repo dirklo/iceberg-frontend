@@ -10,8 +10,10 @@ function Dashboard({ currentUser }){
   )
 }
 
+
 export default connect(state => {
   return {
     currentUser: state.auth.currentUser
   }
 })(Dashboard);
+
