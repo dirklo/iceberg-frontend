@@ -12,7 +12,7 @@ import Login from '../sessions/Login'
 import Dashboard from '../dashboard/Dashboard'
 import withAuth from '../auth/withAuth'
 import {Link} from "react-router-dom"
-import {Layout, Header, Navigation, Content} from 'react-mdl'
+import {Layout, Header, Navigation, Footer,FooterSection, FooterLinkList  } from 'react-mdl'
 import { logoutUser } from '../../actions/auth'
 
 class DebugRouter extends Router {
@@ -40,7 +40,8 @@ function App({ logoutUser, loggedIn }) {
     <DebugRouter>
       <Router>
         <Layout>
-          {loggedIn ? 
+         
+           {loggedIn ?  
 
             <Header title="Iceberg" className="header" scroll>
               <Navigation>  
@@ -56,14 +57,22 @@ function App({ logoutUser, loggedIn }) {
                       Logout
                   </button>
               </Navigation>
+
+              <Footer className= "footer"size="mini">
+                <FooterSection type="left" logo="IceBerg">
+                  <FooterLinkList>
+                    <Link to="#">Help</Link>
+                    <Link to="#">About Us</Link>
+                  </FooterLinkList>
+                </FooterSection>
+              </Footer>
             </Header>
 
-            :null
-          }
+              
+             :null
+          } 
         
-          {/* <Content>
-              <div className="page-content" />
-          </Content> */}
+          
         </Layout>
         
         {/* push content below navbar */}
