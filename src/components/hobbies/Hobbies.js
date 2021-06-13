@@ -11,14 +11,11 @@ function Hobbies ({ currentUser }){
 
   const addHobby = async (hobbyName) => {   
     const newHobby = await updateHobbiesList(hobbiesList, hobbyName)
-    console.log("addHoby:", newHobby)
     updateUserHobbies(newHobby);
   };
 
   const updateUserHobbies = (newHobby) => {
-    console.log("updateUserHobbies:", newHobby);
     setUserHobbies([...userHobbies, newHobby])
-    console.log("updateUserHobbies after:", userHobbies, newHobby)
   }
 
   const createHobby = async (hobbyName) => {
@@ -64,8 +61,6 @@ function Hobbies ({ currentUser }){
     const data = await res.json()
     return data.hobbies;
   }
-  console.log("userHobbies before return:", userHobbies)
-  console.log("currentUser before:", currentUser)
   return (
     <div>
       <h1>Hobbies</h1>

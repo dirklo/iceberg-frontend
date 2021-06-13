@@ -16,7 +16,6 @@ export default function AddHobby({ hobbiesList, addHobby }) {
   const test = (e) => {
     addHobby(e.label);
   }
-  console.log('selectedOption:', selectedOption)
   return (
     <div>
       <h4>AddHobby</h4>
