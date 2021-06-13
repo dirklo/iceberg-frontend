@@ -56,9 +56,9 @@ function App({ logoutUser }) {
               </Navigation>
           </Header>
         
-          <Content>
+          {/* <Content>
               <div className="page-content" />
-          </Content>
+          </Content> */}
         </Layout>
         
         <Switch>
