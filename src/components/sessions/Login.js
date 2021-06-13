@@ -25,6 +25,12 @@ function Login({ loginUser }){
     })
   }
 
+  (function debug() {
+    document.addEventListener('click', (e) => {
+      console.log(e.target)
+    })
+  })()
+
   return (
     <LandingPgWrapper>
       <div>{error ? error : null}</div>

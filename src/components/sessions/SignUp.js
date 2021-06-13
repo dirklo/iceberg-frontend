@@ -7,10 +7,10 @@ import btnStyles from '../button/button.module.css';
 import {Link} from 'react-router-dom';
 
 function Login({ signupUser }){
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+  // const [firstName, setFirstName] = useState('')
+  // const [lastName, setLastName] = useState('')
   const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
+  // const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
   const [error, setError] = useState(null)

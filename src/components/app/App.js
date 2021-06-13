@@ -9,10 +9,10 @@ import UsersContainer from '../users/UsersContainer'
 import SignUp from '../sessions/SignUp'
 import Login from '../sessions/Login'
 import Dashboard from '../dashboard/Dashboard'
-import NavBar from '../app/NavBar'
+// import NavBar from '../app/NavBar'
 import withAuth from '../auth/withAuth'
 import {Link} from "react-router-dom"
-import {Layout, Header, Navigation, Drawer, Content} from 'react-mdl'
+import {Layout, Header, Navigation, Content} from 'react-mdl'
 
 class DebugRouter extends Router {
   constructor(props){
@@ -59,7 +59,7 @@ function App() {
           <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
           <Route path="/dashboard" component={withAuth(Dashboard)}/> 
           {/* update to dashboard connect route so its consistent. */}
-          <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>          
+          <Route path="/:customPath" component={withAuth(UsersContainer)}/>          
         </Switch>
       </Router>
     </DebugRouter>
