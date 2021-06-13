@@ -1,0 +1,8 @@
+.ConnectUserList li {
+ list-style: none;
+}
+
+.ConnectUserList {
+  padding: 0;
+  margin: 0;
+}
