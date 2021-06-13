@@ -57,15 +57,6 @@ function App({ logoutUser, loggedIn }) {
                       Logout
                   </button>
               </Navigation>
-
-              <Footer className= "footer"size="mini">
-                <FooterSection type="left" logo="IceBerg">
-                  <FooterLinkList>
-                    <Link to="#">Help</Link>
-                    <Link to="#">About Us</Link>
-                  </FooterLinkList>
-                </FooterSection>
-              </Footer>
             </Header>
 
               
@@ -82,11 +73,20 @@ function App({ logoutUser, loggedIn }) {
           <Route exact path="/" />
           <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
           <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
-          <Route path="/connect" component={withAuth(Dashboard)}/> 
+          <Route path="/connect" component={Dashboard}/> 
           {/* update to dashboard connect route so its consistent. */}
           
-          <Route path="/:customPath" component={withAuth(UsersContainer)}/>          
+          <Route path="/:customPath" component={UsersContainer}/>          
         </Switch>
+
+        <Footer className= "footer"size="mini">
+          <FooterSection type="left" logo="Iceberg">
+            <FooterLinkList>
+              <Link to="#">Help</Link>
+              <Link to="#">About Us</Link>
+            </FooterLinkList>
+          </FooterSection>
+        </Footer>
       </Router>
     </DebugRouter>
 
