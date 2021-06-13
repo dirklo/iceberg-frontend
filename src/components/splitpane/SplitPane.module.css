@@ -1,0 +1,49 @@
+.SplitPane {
+  display: flex;
+  flex-direction: row;
+  padding: 3rem;
+}
+
+.Left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 3rem;
+  padding-right: 3rem;
+  border-right: 1px solid var(--gray-main);
+  align-items: center;
+  text-align: center;
+}
+
+.Left div {
+  padding-bottom: 2rem;
+}
+
+.Left p {
+  margin: .25rem;
+  font-size: 1.25rem;
+}
+
+.Left h1 {
+ font-size: 1.953rem;
+ font-weight: 500;
+ margin: 1.5rem 0 .25rem 0;
+}
+
+.Right {
+  flex: 2.5;
+  display: flex;
+  flex-direction: column;
+}
+
+.Right h1 {
+  font-size: 3.815rem;
+  font-weight: 400;
+  margin: 1rem 0;
+}
+
+.Right h2 {
+  font-size: 1.953rem;
+  margin: .25rem 0;
+}
+
