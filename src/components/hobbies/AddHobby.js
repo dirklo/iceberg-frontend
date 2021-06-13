@@ -11,7 +11,7 @@ export default function AddHobby({ hobbiesList, addHobby }) {
     }
   )
   
-  const test = (e) => {
+  const onChange = (e) => {
     addHobby(e.label);
   }
   return (
@@ -19,7 +19,7 @@ export default function AddHobby({ hobbiesList, addHobby }) {
       <h4>AddHobby</h4>
       <CreatableSelect 
         options={searchList}
-        onChange={(e) => test(e)}
+        onChange={(e) => onChange(e)}
       />
     </div>
   )
