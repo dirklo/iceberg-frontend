@@ -103,7 +103,10 @@ export const checkAuth = () => {
         }
       }).then((res) => {
         if (res.ok) {
-          return res.json().then(user => dispatch({type: 'AUTHENTICATED', payload: user}))
+          return res.json().then(user => {
+            console.log(user)
+            dispatch({type: 'AUTHENTICATED', payload: user})
+          })
         } else {
           return Promise.reject(dispatch({type: 'NOT_AUTHENTICATED'}))
         }
