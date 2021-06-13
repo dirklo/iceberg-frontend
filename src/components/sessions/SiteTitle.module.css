@@ -2,12 +2,15 @@
   max-width: 75%;
 }
 
-.Site-title > h1 {
+.Site-title h1 {
   font-size: 5.96rem;
+  line-height: 1.25;
 }
 
 .Site-title > h2 {
   font-size: 1.563rem;
+  line-height: 1.25;
+  margin: 0 0 1rem 0;
 }
 
 .Site-title > h1, h2 {

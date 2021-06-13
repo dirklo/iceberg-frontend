@@ -49,14 +49,14 @@ function App({ logoutUser, loggedIn }) {
                   <Link to ="/messages">Messages</Link>
                   <Link to ="/connect">Connect</Link>
                   <Link to ="/profile">Profile</Link>
-                  <button
+                  
+                  <button 
                     type='button'
                     onClick={(e) => {
                       e.preventDefault()
                       logoutUser()
                     }}
-                    >
-                      Logout
+                    ><Link className="LogoutLink" to="/login">Logout</Link>
                   </button>
               </Navigation>
             </Header>
