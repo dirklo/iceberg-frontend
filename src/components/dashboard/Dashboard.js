@@ -4,9 +4,9 @@ import ConnectContainer from './ConnectContainer';
 function Dashboard({ currentUser }){
   return(
     <div>
-      <h1>Dashboard</h1>
+      {/* <h1>Dashboard</h1> */}
       <ConnectContainer />
-      <h2>current User is: {currentUser ? currentUser.username : 'none'}</h2>
+      {/* <h2>current User is: {currentUser ? currentUser.username : 'none'}</h2> */}
     </div>
   )
 }
