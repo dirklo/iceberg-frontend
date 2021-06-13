@@ -59,15 +59,6 @@ function App({ logoutUser, loggedIn }) {
                       Logout
                   </button>
               </Navigation>
-
-              <Footer className= "footer"size="mini">
-                <FooterSection type="left" logo="IceBerg">
-                  <FooterLinkList>
-                    <Link to="#">Help</Link>
-                    <Link to="#">About Us</Link>
-                  </FooterLinkList>
-                </FooterSection>
-              </Footer>
             </Header>
 
               
@@ -88,6 +79,15 @@ function App({ logoutUser, loggedIn }) {
           <Route path="/messages" component={Messages}/> 
           <Route path="/:customPath" component={UsersContainer}/>          
         </Switch>
+
+        <Footer className= "footer"size="mini">
+          <FooterSection type="left" logo="Iceberg">
+            <FooterLinkList>
+              <Link to="#">Help</Link>
+              <Link to="#">About Us</Link>
+            </FooterLinkList>
+          </FooterSection>
+        </Footer>
       </Router>
     </DebugRouter>
 

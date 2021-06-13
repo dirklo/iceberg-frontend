@@ -1,0 +1,16 @@
+.ConnectUserList li {
+ list-style: none;
+}
+
+.ConnectUserList {
+  padding: 0;
+  margin: 0;
+}
+
+.UsersList {
+  border: 1.5px solid var(--gray-main);
+  overflow-y: auto;
+  height: 400px;
+  margin-top: 2rem;
+  padding: 1rem;
+}

@@ -1,8 +1,9 @@
 import React from 'react';
-import Sample from '../../assets/sample-profile.png'; 
+import Sample from '../../assets/profile-images/profile-1.png'; 
 import styles from './ProfileImage.module.css';
 
 function ProfileImage({image, name}) {
+
   return (
     <div className={styles.ProfileImage}>
       <img src={image} alt={`${name}`}></img>

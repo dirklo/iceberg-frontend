@@ -1,0 +1,33 @@
+.ConnectContainer {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: row;
+  padding: 3rem;
+}
+
+.Recommended {
+  margin-right: 3rem;
+  padding-right: 3rem;
+  border-right: 1px solid var(--gray-main);
+}
+
+.Recommended h1  {
+  font-size:2.441rem;
+  text-align: center;
+}
+
+.SampleList{
+  max-width: 400px;
+}
+
+.Recommended {
+  flex: 1;
+}
+
+.ConnectSearch {
+  flex: 3;
+}
+
+.ConnectSearch h1 {
+
+}
