@@ -15,7 +15,9 @@ function UserProfile({ currentUser }){
         <SplitPane 
           left={
             <>
-              <ProfileImage />
+            {/* tried to reference currentUser.image, but the links from faker seem to be broken */}
+            {/* just using standard image */}
+            <ProfileImage /> 
                 <div>
                   <h1>{currentUser.first_name} {currentUser.last_name}</h1>
                   <p><span className="italic">
