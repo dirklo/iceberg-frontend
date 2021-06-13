@@ -1,0 +1,30 @@
+.About {
+  padding-bottom: 1rem;
+}
+
+.Icon {
+  text-align: center;
+  font-size: 22px;
+  color: var(--color-main);
+}
+
+.Icon:first-of-type {
+  padding-right: 1rem;
+}
+
+.About p {
+  line-height: 1.5;
+  margin: .5rem 0;
+  width: 80%;
+}
+
+.TitleBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.TitleBlock button {
+  height: 2rem;
+}
