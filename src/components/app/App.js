@@ -10,10 +10,11 @@ import UsersContainer from '../users/UsersContainer'
 import SignUp from '../sessions/SignUp'
 import Login from '../sessions/Login'
 import Dashboard from '../dashboard/Dashboard'
-import withAuth from '../auth/withAuth'
+// import withAuth from '../auth/withAuth'
 import {Link} from "react-router-dom"
 import {Layout, Header, Navigation, Footer,FooterSection, FooterLinkList  } from 'react-mdl'
 import { logoutUser } from '../../actions/auth'
+import Messages from '../users/Messages'
 
 class DebugRouter extends Router {
   constructor(props){
@@ -45,6 +46,7 @@ function App({ logoutUser, loggedIn }) {
 
             <Header title="Iceberg" className="header" scroll>
               <Navigation>  
+                  <Link to ="/messages">Messages</Link>
                   <Link to ="/connect">Connect</Link>
                   <Link to ="/profile">Profile</Link>
                   <button
@@ -74,8 +76,7 @@ function App({ logoutUser, loggedIn }) {
           <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
           <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
           <Route path="/connect" component={Dashboard}/> 
-          {/* update to dashboard connect route so its consistent. */}
-          
+          <Route path="/messages" component={Messages}/> 
           <Route path="/:customPath" component={UsersContainer}/>          
         </Switch>
 
