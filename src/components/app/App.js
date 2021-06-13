@@ -42,7 +42,7 @@ function App({ logoutUser, loggedIn }) {
         <Layout>
           {loggedIn ? 
 
-            <Header title="IceBerg" className="header" scroll>
+            <Header title="Iceberg" className="header" scroll>
               <Navigation>  
                   <Link to ="/connect">Connect</Link>
                   <Link to ="/profile">Profile</Link>
@@ -67,7 +67,7 @@ function App({ logoutUser, loggedIn }) {
         </Layout>
         
         {/* push content below navbar */}
-        <div className="Spacer"></div>
+        {loggedIn && <div className="Spacer"></div>}
 
         <Switch>
           <Route exact path="/" />
