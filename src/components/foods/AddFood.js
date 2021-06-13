@@ -1,23 +1,22 @@
 import React from 'react'
-import { useState } from 'react'
 import CreatableSelect from 'react-select/creatable';
 
-export default function AddHobby({ hobbiesList, addHobby }) {
-  const searchList = hobbiesList.map(
-    (hobby) => {
+export default function AddFood({ foodsList, addFood }) {
+  const searchList = foodsList.map(
+    (food) => {
       return {
-        value: hobby.id,
-        label: hobby.name
+        value: food.id,
+        label: food.name
       }
     }
   )
   
   const test = (e) => {
-    addHobby(e.label);
+    addFood(e.label);
   }
   return (
     <div>
-      <h4>AddHobby</h4>
+      <h4>AddFood</h4>
       <CreatableSelect 
         options={searchList}
         onChange={(e) => test(e)}

@@ -1,16 +1,16 @@
 import React from 'react'
 import DeleteButton from './DeleteButton'
 
-const Hobby = ({ hobby, deleteHobby }) => {
+const Food = ({ food, deleteFood }) => {
   const onDelete = (e) => {
-    deleteHobby(e.target.id)
+    deleteFood(e.target.id)
   }
   return (
     <div>
       <h3>
-        {hobby.name} <DeleteButton id={hobby.id} deleteHobby={onDelete}/>
+        {food.name} <DeleteButton id={food.id} deleteFood={onDelete}/>
       </h3>
     </div>
   )
 }
-export default Hobby;
+export default Food;
