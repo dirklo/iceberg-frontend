@@ -35,9 +35,8 @@ function UserProfile({ currentUser }){
                   <p>
                     <span className="emphasis">
                       {/* can we send team name? */}
-                      Team: 
-                    </span>
-                    {currentUser.team.name}
+                      Team: </span>
+                     {currentUser.team.name}
                   </p> 
                 </div>
                 <div>
