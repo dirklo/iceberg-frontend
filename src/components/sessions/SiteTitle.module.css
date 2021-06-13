@@ -1,15 +1,16 @@
 .Site-title {
   max-width: 75%;
 }
-h1 {
+
+.Site-title > h1 {
   font-size: 5.96rem;
 }
 
-h2 {
+.Site-title > h2 {
   font-size: 1.563rem;
 }
 
-h1, h2 {
+.Site-title > h1, h2 {
   font-weight: 400;
   margin: 1rem 0;
 }
