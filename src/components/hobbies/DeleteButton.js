@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function DeleteButton() {
+export default function DeleteButton({ id, deleteHobby }) {
   return (
     <div>
-      <button>Delete</button>
+      <button id={id} onClick={deleteHobby}>Delete</button>
     </div>
   )
 }
