@@ -16,17 +16,8 @@ function Hobbies ({ currentUser }){
   ])
 
   const addHobby = async (hobbyName) => {   
-   
-    //updateUserHobbyList(userHobbies, newHobby)
     updateHobbiesList(hobbiesList, hobbyName)
   };
-
-  // const updateUserHobbyList = (userHobbies, hobbyName) => {
-  //   if(hobbyExists(userHobbies, hobbyName) === undefined){
-      
-  //     setUserHobbies([...userHobbies, newHobby]);
-  //   }
-  // }
 
   const updateHobbiesList = async (hobbiesList, hobbyName) => {
     if(hobbyExists(hobbiesList, hobbyName) === undefined){
