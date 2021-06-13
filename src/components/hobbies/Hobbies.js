@@ -41,7 +41,6 @@ function Hobbies ({ currentUser }){
       const  newHobby = await res.json()
       console.log("newHobby after add to server:", newHobby)
       setHobbiesList([...hobbiesList, newHobby.hobby]);  
-      //getHobbies()
       return newHobby.hobby
   } 
 
