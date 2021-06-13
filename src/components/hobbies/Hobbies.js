@@ -7,18 +7,18 @@ const backendUrl = 'http://localhost:3001/'
 
 function Hobbies ({ currentUser }){
   const [hobbiesList, setHobbiesList] = useState([])
-
   const [userHobbies, setUserHobbies] = useState([])
 
   const addHobby = async (hobbyName) => {   
-    const newHobby = updateHobbiesList(hobbiesList, hobbyName)
+    const newHobby = await updateHobbiesList(hobbiesList, hobbyName)
     console.log("addHoby:", newHobby)
-    updateUserHobbies(userHobbies, newHobby);
+    updateUserHobbies(newHobby);
   };
 
-  const updateUserHobbies = (userHobbies, hobby) => {
-    console.log("updateUserHobbies:", userHobbies)
-    setUserHobbies(...userHobbies, hobby)
+  const updateUserHobbies = (newHobby) => {
+    console.log("updateUserHobbies:", newHobby);
+    setUserHobbies([...userHobbies, newHobby])
+    console.log("updateUserHobbies after:", userHobbies, newHobby)
   }
 
   const createHobby = async (hobbyName) => {
@@ -32,7 +32,8 @@ function Hobbies ({ currentUser }){
       })
       const  newHobby = await res.json()
       setHobbiesList([...hobbiesList, newHobby]);  
-      return newHobby
+      getHobbies()
+      return newHobby.hobby
   } 
 
   const updateHobbiesList = (hobbiesList, hobbyName) => {
@@ -48,13 +49,14 @@ function Hobbies ({ currentUser }){
     return data.find(element => element.name === find)
   }
 
-  useEffect(() => {
-    const getHobbies = async () => {
-      const hobbiesFromServer = await fetchHobbies()
-      setHobbiesList(hobbiesFromServer)
-    }
+  useEffect(() => {   
     getHobbies()
   }, [])
+
+  const getHobbies = async () => {
+    const hobbiesFromServer = await fetchHobbies()
+    setHobbiesList(hobbiesFromServer)
+  }
 
   //Fetch Hobbies
   const fetchHobbies = async () => {
@@ -63,11 +65,12 @@ function Hobbies ({ currentUser }){
     return data.hobbies;
   }
   console.log("userHobbies before return:", userHobbies)
+  console.log("currentUser before:", currentUser)
   return (
     <div>
       <h1>Hobbies</h1>
 
-      {currentUser.hobbies.map((hobby) => (
+      {userHobbies.map((hobby) => (
         <React.Fragment key={hobby.id}>
           <Hobby hobby={hobby}/>
         </React.Fragment>
