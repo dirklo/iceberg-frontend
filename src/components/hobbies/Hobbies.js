@@ -15,12 +15,33 @@ const Hobbies = () => {
     }
   ])
 
-  const addHobby = (data) => { 
-    const id = Math.floor(Math.random() * 10000) + 1
-    const newHobby = {id, name: data}
-    hobbyExists(userHobbies, data) === undefined && setUserHobbies([...userHobbies, newHobby]);
-    hobbyExists(hobbiesList, data) === undefined && setHobbiesList([...hobbiesList, newHobby]);  
+  const addHobby = async (hobbyName) => {   
+   
+    //updateUserHobbyList(userHobbies, newHobby)
+    updateHobbiesList(hobbiesList, hobbyName)
   };
+
+  // const updateUserHobbyList = (userHobbies, hobbyName) => {
+  //   if(hobbyExists(userHobbies, hobbyName) === undefined){
+      
+  //     setUserHobbies([...userHobbies, newHobby]);
+  //   }
+  // }
+
+  const updateHobbiesList = async (hobbiesList, hobbyName) => {
+    if(hobbyExists(hobbiesList, hobbyName) === undefined){
+      const data = {name: hobbyName};
+      const res = await fetch(`${backendUrl}/hobbies`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      const  newHobby = await res.json()
+      setHobbiesList([...hobbiesList, newHobby]);  
+    }
+  }
 
   const hobbyExists = (data, find) => {
     return data.find(element => element.name === find)
