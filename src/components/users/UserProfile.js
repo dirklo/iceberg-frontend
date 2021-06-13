@@ -63,9 +63,11 @@ function UserProfile({ currentUser }){
               </div>
               {/* Pass in a 'listArr' prop to the Hobbies and Foods lists */}
               {/* <ProfileList name={"Hobbies"} listArr={currentUser.hobbies}/> */}
-              <Hobbies/>
-              <Foods/>
+              {/* <Hobbies/> */}
+              {/* <Foods/> */}
               {/* <ProfileList name={"Favorite foods"} listArr={currentUser.foods}/> */}
+              <ProfileList name={"Favorite foods"}/>
+              <ProfileList name={"Hobbies"}/>
               <ProfileList />
             </React.Fragment>
           }
