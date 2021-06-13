@@ -34,13 +34,15 @@ class DebugRouter extends Router {
   })
 })()
 
-function App({ logoutUser }) {
+function App({ logoutUser, loggedIn }) {
   return (
 
     <DebugRouter>
       <Router>
         <Layout>
-          <Header title="IceBerg" className="header" scroll>
+          {loggedIn ? 
+
+            <Header title="IceBerg" className="header" scroll>
               <Navigation>  
                   <Link to ="/connect">Connect</Link>
                   <Link to ="/profile">Profile</Link>
@@ -50,11 +52,14 @@ function App({ logoutUser }) {
                       e.preventDefault()
                       logoutUser()
                     }}
-                  >
+                    >
                       Logout
                   </button>
               </Navigation>
-          </Header>
+            </Header>
+
+            :null
+          }
         
           {/* <Content>
               <div className="page-content" />
@@ -75,5 +80,9 @@ function App({ logoutUser }) {
   );
 }
 
-export default connect(null, { logoutUser })(App)
+export default connect(state => {
+  return {
+    loggedIn: state.auth.loggedIn
+  }
+}, { logoutUser })(App)
 
