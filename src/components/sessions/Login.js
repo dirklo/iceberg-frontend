@@ -6,7 +6,7 @@ import LandingPgWrapper from './LandingPgWrapper';
 import btnStyles from '../button/button.module.css';
 import { Link } from 'react-router-dom';
 
-function Login({ loginUser, currentUser }){
+function Login({ loginUser }){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -48,17 +48,8 @@ function Login({ loginUser, currentUser }){
         <input className={`${btnStyles.Btn} ${btnStyles["Primary-inverse"]}`} type="submit" value="Login"/>
         <Link className={`${btnStyles.Btn} ${btnStyles["Secondary-inverse"]}`} to="/signup">Sign up</Link>
       </form>
-
-      {/* <div>
-        Current User: <br />
-        {currentUser ? currentUser.email : 'none'}
-      </div> */}
     </LandingPgWrapper>
   )
 }
 
-export default connect(state => {
-  return {
-    currentUser: state.auth.currentUser
-  }
-}, { loginUser })(Login);
+export default connect(null, { loginUser })(Login);

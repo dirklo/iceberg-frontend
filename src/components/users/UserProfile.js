@@ -6,7 +6,7 @@ import Button from '../button/button';
 import ProfileList from './ProfileList';
 import { FaEnvelope } from 'react-icons/fa';
 import { FaPhoneAlt } from 'react-icons/fa';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 function UserProfile({ currentUser }){
   return (
