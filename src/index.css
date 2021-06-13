@@ -23,3 +23,11 @@ code {
   --gray-main: #C4C4C4;
   --gray-light: #F7F7F7;
 }
+
+.emphasis {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
