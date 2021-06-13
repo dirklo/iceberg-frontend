@@ -58,7 +58,7 @@ function App() {
           <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
           <Route path="/dashboard" component={withAuth(Dashboard)}/> 
           {/* update to dashboard connect route so its consistent. */}
-          <Route path="/connect" ><ConnectContainer /></Route>
+          
           <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>          
         </Switch>
       </Router>
