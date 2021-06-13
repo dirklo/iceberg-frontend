@@ -55,12 +55,14 @@ function App({ logoutUser }) {
                   </button>
               </Navigation>
           </Header>
-        
-          <Content>
+          {/* <Content>
               <div className="page-content" />
-          </Content>
+          </Content> */}
         </Layout>
         
+        {/* push content below navbar */}
+        <div className="Spacer"></div>
+
         <Switch>
           <Route exact path="/" />
           <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
