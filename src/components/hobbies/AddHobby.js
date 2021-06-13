@@ -16,6 +16,7 @@ export default function AddHobby({ hobbiesList, addHobby }) {
   const test = (e) => {
     addHobby(e.label);
   }
+  console.log("AddHobby:", "hobbiesList:", hobbiesList);
   return (
     <div>
       <h4>AddHobby</h4>

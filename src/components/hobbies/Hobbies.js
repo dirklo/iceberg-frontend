@@ -9,31 +9,11 @@ function Hobbies ({ currentUser }){
   const [hobbiesList, setHobbiesList] = useState([])
   const [userHobbies, setUserHobbies] = useState([])
 
-  //add Hobby - will be passed to the Add Hobby component
+  //add Hobby - will be passed to the Add Hobby component and called from AddHobby component
   const addHobby = async (hobbyName) => {   
     const newHobby = await updateHobbiesList(hobbiesList, hobbyName)
     updateUserHobbies(newHobby);
   };
-
-  const updateUserHobbies = (newHobby) => {
-    setUserHobbies([...userHobbies, newHobby])
-  }
-
-  //Create a new hobby in the db
-  const createHobby = async (hobbyName) => {
-    const data = {name: hobbyName};
-      const res = await fetch(`${backendUrl}/hobbies`,{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      const  newHobby = await res.json()
-      setHobbiesList([...hobbiesList, newHobby]);  
-      getHobbies()
-      return newHobby.hobby
-  } 
 
   const updateHobbiesList = (hobbiesList, hobbyName) => {
     const fetchedHobby = hobbyExists(hobbiesList, hobbyName);
@@ -44,10 +24,32 @@ function Hobbies ({ currentUser }){
     }
   }
 
+  const updateUserHobbies = (newHobby) => {
+    setUserHobbies([...userHobbies, newHobby])
+  }
+
+  //Create a new hobby in the db - Called from updateHobbiesList
+  const createHobby = async (hobbyName) => {
+    const data = {name: hobbyName};
+      const res = await fetch(`${backendUrl}/hobbies`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      const  newHobby = await res.json()
+      console.log("newHobby after add to server:", newHobby)
+      setHobbiesList([...hobbiesList, newHobby.hobby]);  
+      //getHobbies()
+      return newHobby.hobby
+  } 
+
   const hobbyExists = (data, find) => {
     return data.find(element => element.name === find)
   }
 
+  //Get Hobbies List from Server
   useEffect(() => {   
     getHobbies()
   }, [])
@@ -57,12 +59,12 @@ function Hobbies ({ currentUser }){
     setHobbiesList(hobbiesFromServer)
   }
 
-  //Fetch Hobbies
   const fetchHobbies = async () => {
     const res = await fetch(`${backendUrl}/hobbies`)
     const data = await res.json()
     return data.hobbies;
   }
+
   return (
     <div>
       <h1>Hobbies</h1>
