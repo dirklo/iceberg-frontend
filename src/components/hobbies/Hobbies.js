@@ -9,6 +9,7 @@ function Hobbies ({ currentUser }){
   const [hobbiesList, setHobbiesList] = useState([])
   const [userHobbies, setUserHobbies] = useState([])
 
+  //add Hobby - will be passed to the Add Hobby component
   const addHobby = async (hobbyName) => {   
     const newHobby = await updateHobbiesList(hobbiesList, hobbyName)
     updateUserHobbies(newHobby);
@@ -18,6 +19,7 @@ function Hobbies ({ currentUser }){
     setUserHobbies([...userHobbies, newHobby])
   }
 
+  //Create a new hobby in the db
   const createHobby = async (hobbyName) => {
     const data = {name: hobbyName};
       const res = await fetch(`${backendUrl}/hobbies`,{
