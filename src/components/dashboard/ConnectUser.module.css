@@ -1,0 +1,47 @@
+.SearchResultCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* justify-content: flex-start; */
+  /* max-height: 100px; */
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: var(--gray-light);
+  margin: 2rem 0;
+}
+
+.Image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Image img {
+  width: 50%;
+  padding: .75rem;
+  border-radius: 50%;
+}
+
+.UserDetails {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  padding: .25rem;
+}
+
+.UserDetails p {
+  margin: 0;
+}
+
+.Divider {
+  padding: 0 .5rem;
+}
+
+.UserDetails h3 {
+  color: var(--color-main);
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 0;
+}
