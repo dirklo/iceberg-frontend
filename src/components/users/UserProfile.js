@@ -8,6 +8,8 @@ import ProfileList from './ProfileList';
 import { FaEnvelope } from 'react-icons/fa';
 import { FaPhoneAlt } from 'react-icons/fa';
 import reactDom from 'react-dom';
+import Hobbies from '../hobbies/Hobbies'
+import Foods from '../foods/Foods'
 
 function UserProfile({ currentUser }){
   return (
@@ -60,8 +62,10 @@ function UserProfile({ currentUser }){
                 </p>
               </div>
               {/* Pass in a 'listArr' prop to the Hobbies and Foods lists */}
-              <ProfileList name={"Hobbies"} listArr={currentUser.hobbies}/>
-              <ProfileList name={"Favorite foods"} listArr={currentUser.foods}/>
+              {/* <ProfileList name={"Hobbies"} listArr={currentUser.hobbies}/> */}
+              <Hobbies/>
+              <Foods/>
+              {/* <ProfileList name={"Favorite foods"} listArr={currentUser.foods}/> */}
               <ProfileList />
             </React.Fragment>
           }
