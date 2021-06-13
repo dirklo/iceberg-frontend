@@ -1,11 +1,11 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
+import { connect } from 'react-redux';
 import Hobby from './Hobby'
 import AddHobby from './AddHobby'
 const backendUrl = 'http://localhost:3001/'
 
-
-const Hobbies = () => {
+function Hobbies ({ currentUser }){
   const [hobbiesList, setHobbiesList] = useState([])
 
   const [userHobbies, setUserHobbies] = useState([
@@ -61,10 +61,8 @@ const Hobbies = () => {
     const data = await res.json()
     return data.hobbies;
   }
-  
 
-  //Add Hobby  
-  console.log("userHobbies:", userHobbies, "hobbiesList:", hobbiesList)
+  console.log("currentUser:", currentUser)
   return (
     <div>
       <h1>Hobbies</h1>
@@ -78,4 +76,9 @@ const Hobbies = () => {
     </div>
   )
 }
-export default Hobbies;
+
+export default connect(state => {
+  return {
+    currentUser: state.auth.currentUser
+  }
+})(Hobbies);
