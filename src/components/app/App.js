@@ -35,6 +35,7 @@ function App() {
           <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
           <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
           <Route path="/dashboard" component={withAuth(Dashboard)}/>
+          <Route path="/connect" component={withAuth(Dashboard)}/>
           <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>          
         </Switch>
       </Router>

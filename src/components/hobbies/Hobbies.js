@@ -8,20 +8,21 @@ const backendUrl = 'http://localhost:3001/'
 function Hobbies ({ currentUser }){
   const [hobbiesList, setHobbiesList] = useState([])
 
-  const [userHobbies, setUserHobbies] = useState([
-    {
-      id: 1,
-      name: "swimming"
-    }
-  ])
+  const [userHobbies, setUserHobbies] = useState([])
 
   const addHobby = async (hobbyName) => {   
-    updateHobbiesList(hobbiesList, hobbyName)
+    const newHobby = updateHobbiesList(hobbiesList, hobbyName)
+    console.log("addHoby:", newHobby)
+    updateUserHobbies(userHobbies, newHobby);
   };
 
-  const updateHobbiesList = async (hobbiesList, hobbyName) => {
-    if(hobbyExists(hobbiesList, hobbyName) === undefined){
-      const data = {name: hobbyName};
+  const updateUserHobbies = (userHobbies, hobby) => {
+    console.log("updateUserHobbies:", userHobbies)
+    setUserHobbies(...userHobbies, hobby)
+  }
+
+  const createHobby = async (hobbyName) => {
+    const data = {name: hobbyName};
       const res = await fetch(`${backendUrl}/hobbies`,{
         method: 'POST',
         headers: {
@@ -31,6 +32,15 @@ function Hobbies ({ currentUser }){
       })
       const  newHobby = await res.json()
       setHobbiesList([...hobbiesList, newHobby]);  
+      return newHobby
+  } 
+
+  const updateHobbiesList = (hobbiesList, hobbyName) => {
+    const fetchedHobby = hobbyExists(hobbiesList, hobbyName);
+    if(fetchedHobby === undefined){
+      return createHobby(hobbyName);
+    } else {
+      return fetchedHobby;
     }
   }
 
@@ -52,13 +62,12 @@ function Hobbies ({ currentUser }){
     const data = await res.json()
     return data.hobbies;
   }
-
-  console.log("currentUser:", currentUser)
+  console.log("userHobbies before return:", userHobbies)
   return (
     <div>
       <h1>Hobbies</h1>
 
-      {userHobbies.map((hobby) => (
+      {currentUser.hobbies.map((hobby) => (
         <React.Fragment key={hobby.id}>
           <Hobby hobby={hobby}/>
         </React.Fragment>
