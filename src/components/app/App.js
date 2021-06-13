@@ -42,7 +42,7 @@ function App({ logoutUser, loggedIn }) {
         <Layout>
           {loggedIn ? 
 
-            <Header title="IceBerg" className="header" scroll>
+            <Header title="Iceberg" className="header" scroll>
               <Navigation>  
                   <Link to ="/connect">Connect</Link>
                   <Link to ="/profile">Profile</Link>
@@ -66,6 +66,9 @@ function App({ logoutUser, loggedIn }) {
           </Content> */}
         </Layout>
         
+        {/* push content below navbar */}
+        {loggedIn && <div className="Spacer"></div>}
+
         <Switch>
           <Route exact path="/" />
           <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
