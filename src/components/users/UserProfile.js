@@ -6,27 +6,28 @@ import Button from '../button/button';
 import ProfileList from './ProfileList';
 import { FaEnvelope } from 'react-icons/fa';
 import { FaPhoneAlt } from 'react-icons/fa';
+import { connect } from 'react-redux';
 
-function UserProfile({user}){
+function UserProfile({ currentUser }){
   return (
     <>
-    <div className={styles.nav}></div>
     <SplitPane 
       left={
         <>
           <ProfileImage />
             <div>
-              <h1>First last name</h1>
+              <h1>{`${currentUser["first_name"]} ${currentUser["last_name"]}`}</h1>
               <p><span className="italic">
                Pho-net-ic pronunciation</span></p>
-              <p>She/her</p>
-              <p>@usernamelink</p>
+              <p>{currentUser.pronoun}</p>
+              <p>@{currentUser.username}</p>
             </div>
             <div>
               <p><span className="emphasis">
-               Job Title Here</span></p>
+               {currentUser["job_title"]}</span></p>
                <p><span className="emphasis">
-               Team: </span>Team name here</p>
+                 {/* can we send team name? */}
+               Team: </span>{currentUser.team}</p> 
             </div>
             <div>
               <FaEnvelope className={styles.Icon}/>
@@ -58,4 +59,26 @@ function UserProfile({user}){
     </>
   )
 }
+
+UserProfile.defaultProps = {
+  currentUser: {
+    id: 1,
+    first_name: 'Lori',
+    last_name: 'Lakiense',
+    username: 'lorilae',
+    job_title: 'Director of Eastern Sales',
+    //profile image component handles default, so let that kick in
+    pronoun: 'She/her',
+    //currently coming through as team_id - can we send the team name for display?
+    team: "Sales Division",
+    email: "loriannel@workplace.com"
+  }
+}
+
+// export default connect(state => {
+//   return {
+//     currentUser: state.auth.currentUser
+//   }
+// })(UserProfile);
+
 export default UserProfile;
