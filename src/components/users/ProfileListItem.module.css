@@ -1,0 +1,6 @@
+.ProfileListItem {
+  border: 1.5px solid var(--gray-main);
+  padding: .5rem 1rem;
+  border-radius: 8px;
+  margin: .25rem 1rem 0 0;
+}
