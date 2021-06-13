@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import Hobby from './Hobby'
-import AddHobby from './AddHobby'
+// import AddHobby from './AddHobby'
 const backendUrl = 'http://localhost:3001/'
 
 function Hobbies ({ currentUser }){
@@ -11,7 +11,7 @@ function Hobbies ({ currentUser }){
 
   //delete Hobby
   const deleteHobby = (id) => {
-    const res = userHobbies.filter(element => element.id != id)
+    const res = userHobbies.filter(element => element.id !== id)
     setUserHobbies(res)
     //Call dispatch for redux here
   }
@@ -80,7 +80,7 @@ function Hobbies ({ currentUser }){
           <Hobby hobby={hobby} deleteHobby={deleteHobby}/>
         </React.Fragment>
       ))}
-      <AddHobby hobbiesList={hobbiesList} addHobby={addHobby}/>
+      {/* <AddHobby hobbiesList={hobbiesList} addHobby={addHobby}/> */}
     </div>
   )
 }

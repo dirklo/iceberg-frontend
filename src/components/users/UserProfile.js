@@ -7,7 +7,6 @@ import Button from '../button/button';
 import ProfileList from './ProfileList';
 import { FaEnvelope } from 'react-icons/fa';
 import { FaPhoneAlt } from 'react-icons/fa';
-import reactDom from 'react-dom';
 import Hobbies from '../hobbies/Hobbies'
 import Foods from '../foods/Foods'
 
@@ -52,7 +51,10 @@ function UserProfile({ currentUser }){
               <div className={styles.About}>
                 <div className={styles.TitleBlock}>
                   <h1>Deep Dive</h1>
-                  <Button style="Primary" text="Message"/>
+                  <Button 
+                    style="Primary" 
+                    text="Message"
+                  />
                 </div>
                 <h2>About me</h2>
                 <p>
@@ -62,10 +64,10 @@ function UserProfile({ currentUser }){
                 </p>
               </div>
               {/* Pass in a 'listArr' prop to the Hobbies and Foods lists */}
-              {/* <ProfileList name={"Hobbies"} listArr={currentUser.hobbies}/> */}
-              <Hobbies/>
-              <Foods/>
-              {/* <ProfileList name={"Favorite foods"} listArr={currentUser.foods}/> */}
+              <ProfileList name={"Hobbies"} listArr={currentUser.hobbies}/>
+              {/* <Hobbies/>
+              <Foods/> */}
+              <ProfileList name={"Favorite foods"} listArr={currentUser.foods}/>
               <ProfileList />
             </React.Fragment>
           }
@@ -75,23 +77,19 @@ function UserProfile({ currentUser }){
   )
 }
 
-// UserProfile.defaultProps = {
-//   currentUser: {
-//     id: 1,
-//     first_name: 'Lori',
-//     last_name: 'Lakiense',
-//     username: 'lorilae',
-//     job_title: 'Director of Eastern Sales',
-//     //profile image component handles default, so let that kick in
-//     pronoun: 'She/her',
-//     //currently coming through as team_id - can we send the team name for display?
-//     team: "Sales Division",
-//     email: "loriannel@workplace.com"
-//   }
-// }
-
-export default connect(state => {
-  return {
-    currentUser: state.auth.currentUser
+UserProfile.defaultProps = {
+  currentUser: {
+    id: 1,
+    first_name: 'Lori',
+    last_name: 'Lakiense',
+    username: 'lorilae',
+    job_title: 'Director of Eastern Sales',
+    //profile image component handles default, so let that kick in
+    pronoun: 'She/her',
+    //currently coming through as team_id - can we send the team name for display?
+    team: "Sales Division",
+    email: "loriannel@workplace.com"
   }
-})(UserProfile);
+}
+
+export default UserProfile
