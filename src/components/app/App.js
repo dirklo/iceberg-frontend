@@ -70,7 +70,7 @@ function App({ logoutUser, loggedIn }) {
           <Route exact path="/" />
           <Route path="/signup" render={routerProps => <SignUp {...routerProps}/>}/>
           <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
-          <Route path="/dashboard" component={withAuth(Dashboard)}/> 
+          <Route path="/connect" component={withAuth(Dashboard)}/> 
           {/* update to dashboard connect route so its consistent. */}
           <Route path="/:customPath" component={withAuth(UsersContainer)}/>          
         </Switch>
