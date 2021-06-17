@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import styles from './UserProfile.module.css';
 import SplitPane from '../splitpane/SplitPane';
 import ProfileImage from './ProfileImage';
@@ -52,7 +52,7 @@ function UserProfile({ currentUser }){
                 <div className={styles.TitleBlock}>
                   <h1>Deep Dive</h1>
                   <Button 
-                    style="Primary" 
+                    // style="Primary" - commented out to eliminate error
                     text="Message"
                   />
                 </div>
