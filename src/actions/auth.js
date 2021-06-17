@@ -94,7 +94,7 @@ export const logoutUser = () => {
 };
 
 export const checkAuth = () => {
-    return (dispatch) => {
+    return async (dispatch) => {
       return fetch(`${baseUrl}/current_user`, {
         headers: {
           Accept: "application/json",
@@ -104,7 +104,7 @@ export const checkAuth = () => {
       }).then((res) => {
         if (res.ok) {
           return res.json().then(user => {
-            console.log(user)
+            console.log("checkAuth:", user)
             dispatch({type: 'AUTHENTICATED', payload: user})
           })
         } else {
