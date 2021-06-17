@@ -1,5 +1,6 @@
 import React from 'react';
-// import { connect } from 'react-redux'
+import { connect, useDispatch, useEffect } from 'react-redux'
+import {getUser} from '../../actions/user'
 import styles from './UserProfile.module.css';
 import SplitPane from '../splitpane/SplitPane';
 import ProfileImage from './ProfileImage';
@@ -10,7 +11,12 @@ import { FaPhoneAlt } from 'react-icons/fa';
 import Hobbies from '../hobbies/Hobbies'
 import Foods from '../foods/Foods'
 
-function UserProfile({ currentUser }){
+function UserProfile(props){
+  const dispatch = useDispatch();
+
+  const {currentUser} = props;
+  console.log("userProfile:", props);
+  
   return (
     <React.Fragment>
       {currentUser &&
@@ -94,4 +100,8 @@ UserProfile.defaultProps = {
   }
 }
 
-export default UserProfile
+export default connect(state => {
+  return {
+    userProfile: state.userReducer.userProfile
+  }
+}, { getUser })(UserProfile)

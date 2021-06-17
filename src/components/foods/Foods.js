@@ -11,7 +11,8 @@ function Foods ({ currentUser }){
 
   //delete Food
   const deleteFood = (id) => {
-    const res = userFoods.filter(element => element.id !== id)
+    const res = userFoods.filter(element => element.id !== parseInt(id))
+    console.log(id, "deleteFood", res, "userFoods:", userFoods)
     setUserFoods(res)
     //Call dispatch for redux here
   }
