@@ -15,7 +15,7 @@ export const getToken = () => {
 };
 
 export const signupUser = (credentials) => {
-    return (dispatch) => {
+    return async (dispatch) => {
       return fetch(`${baseUrl}/signup`, {
         method: "POST",
         headers: {
@@ -71,7 +71,7 @@ export const loginUser = (credentials) => {
 };
   
 export const logoutUser = () => {
-    return (dispatch) => {
+    return async (dispatch) => {
         return fetch(`${baseUrl}/logout`, {
         method: "DELETE",
         headers: {
