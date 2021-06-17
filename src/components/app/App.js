@@ -31,7 +31,7 @@ class DebugRouter extends Router {
 
 (function debug() {
   document.addEventListener('click', (e) => {
-    console.log(e.target)
+    // console.log(e.target)
   })
 })()
 
