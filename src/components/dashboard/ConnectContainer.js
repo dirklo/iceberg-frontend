@@ -4,7 +4,7 @@ import ConnectForm from './ConnectForm'
 import ConnectUsers from './ConnectUsers'
 import styles from './ConnectContainer.module.css';
 import Recommended from '../../assets/recommended.png';
-import spStyles from '../splitpane/SplitPane.module.css';
+// import spStyles from '../splitpane/SplitPane.module.css';
 
 const ConnectContainer = () => {
 
@@ -17,7 +17,7 @@ const ConnectContainer = () => {
       <div className={styles.ConnectContainer}>
         <div className={styles.Recommended}>
           <h1>Recommended Connections</h1>
-          <img className={styles.SampleList} src={Recommended} />
+          <img className={styles.SampleList} alt="recommended" src={Recommended} />
         </div>
         <div className={styles.ConnectSearch}>
           <h1>Connect</h1>

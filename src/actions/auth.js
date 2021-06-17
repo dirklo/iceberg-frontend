@@ -1,4 +1,4 @@
-import baseUrl from './urlhelper'
+import {baseUrl} from './urlhelper'
 
 const setToken = (token) => {
   localStorage.setItem("token", token);
