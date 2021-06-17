@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3001'
+import baseUrl from './urlhelper'
 
 const setToken = (token) => {
   localStorage.setItem("token", token);
