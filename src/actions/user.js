@@ -1,8 +1,8 @@
 import { baseUrl } from './urlhelper'
 
 export const getUser = (id) => {
-  return async(dispatch => {
-    return fetch(`${baseUrl}/${id}`,{
+  return (async dispatch => {
+    return fetch(`${baseUrl}/users${id}`,{
       method: 'GET',
       headers: {
         Accept: "application/json",
