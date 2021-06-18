@@ -1,11 +1,11 @@
 import React from 'react'
-import { useState, useEffect} from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
 import Food from './Food'
 import AddFood from './AddFood'
 const backendUrl = 'http://localhost:3001/'
 
-function Foods ({ currentUser }){
+function Foods (props){
   const [foodsList, setFoodsList] = useState([])
   const [userFoods, setUserFoods] = useState([])
 
@@ -19,7 +19,10 @@ function Foods ({ currentUser }){
 
   //add Food - will be passed to the Add Food component and called from AddFood component
   const addFood = async (foodName) => {   
-    const newFood = await updateFoodsList(foodsList, foodName)
+   
+    const { foods } = props;
+    const newFood = foods.find(food => food.name === foodName)
+    console.log("foodName", foodName, newFood)
     updateUserFoods(newFood);
   };
 
@@ -66,13 +69,14 @@ function Foods ({ currentUser }){
           <Food food={food} deleteFood={deleteFood}/>
         </React.Fragment>
       ))}
-      <AddFood foodsList={foodsList} addFood={addFood}/>
+      <AddFood foodsList={foodsList} addFood={addFood} userFoods={userFoods}/>
     </div>
   )
 }
 
 export default connect(state => {
   return {
-    currentUser: state.auth.currentUser
+    currentUser: state.auth.currentUser,
+    foods: state.foodsState.foods
   }
 })(Foods);
