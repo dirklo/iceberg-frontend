@@ -1,5 +1,6 @@
 import React from 'react';
-import { connect, useDispatch, useEffect } from 'react-redux'
+import { useEffect } from 'react'
+import { connect } from 'react-redux'
 import {getUser} from '../../actions/user'
 import styles from './UserProfile.module.css';
 import SplitPane from '../splitpane/SplitPane';
@@ -8,14 +9,18 @@ import Button from '../button/button';
 import ProfileList from './ProfileList';
 import { FaEnvelope } from 'react-icons/fa';
 import { FaPhoneAlt } from 'react-icons/fa';
-import Hobbies from '../hobbies/Hobbies'
-import Foods from '../foods/Foods'
+import Hobbies from '../hobbies/Hobbies';
+import Foods from '../foods/Foods';
 
 function UserProfile(props){
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const { customPath } = props.match.params
 
   const {currentUser} = props;
-  console.log("userProfile:", props);
+  console.log("userProfile:", props, customPath);
+  useEffect(() => {
+    getUser(customPath);
+  })
   
   return (
     <React.Fragment>
