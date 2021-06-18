@@ -18,9 +18,14 @@ function UserProfile(props){
 
   const {currentUser} = props;
   console.log("userProfile:", props, customPath);
-  useEffect(() => {
-    getUser(customPath);
-  })
+  const {getUser} = props;
+  const {userProfile} = props;
+  console.log("userProfile:", userProfile, Object.keys(userProfile).length)
+  if(userProfile.username !== customPath){
+    useEffect(() => {
+      getUser(customPath);
+    })
+  }
   
   return (
     <React.Fragment>

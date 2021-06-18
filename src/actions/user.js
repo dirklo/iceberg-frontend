@@ -1,10 +1,10 @@
 import { baseUrl } from './urlhelper'
 
-export const getUser = (id) => {
-  console.log("getUser called:")
+const getUser = (id) => {
+  console.log("getUser call:", baseUrl, id)
   return async (dispatch) => {
     console.log("will fetch")
-    return fetch(`${baseUrl}/users${id}`, {
+    return fetch(`${baseUrl}/users/${id}`, {
       method: 'GET',
       headers: {
         Accept: "application/json",
@@ -13,11 +13,12 @@ export const getUser = (id) => {
     }).then((res) =>{
       console.log("here")
       if(res.ok){
+        console.log("res.ok")
         return res 
           .json()
           .then((userJson) => {
             console.log("userJson", userJson);
-            dispatch({type: "GETUSER", payload: userJson});
+            dispatch({type: "FETCH_USER", payload: userJson});
         })
       } else {
         console.log("here")
@@ -28,3 +29,4 @@ export const getUser = (id) => {
     })
   }
 }
+export{getUser}
