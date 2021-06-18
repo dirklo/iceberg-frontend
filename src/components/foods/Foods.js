@@ -6,7 +6,6 @@ import AddFood from './AddFood'
 const backendUrl = 'http://localhost:3001/'
 
 function Foods (props){
-  const [foodsList, setFoodsList] = useState([])
   const [userFoods, setUserFoods] = useState([])
 
   //delete Food
@@ -18,12 +17,20 @@ function Foods (props){
   }
 
   //add Food - will be passed to the Add Food component and called from AddFood component
-  const addFood = async (foodName) => {   
-   
-    const { foods } = props;
-    const newFood = foods.find(food => food.name === foodName)
+  const { foods } = props;
+  const addFood = async (foodName) => {         
+    let newFood
+    if(foodExists(foods, foodName) === undefined){
+      newFood = await createFood(foodName);
+    } else {
+      newFood = foods.find(food => food.name === foodName);
+    }
+    
     console.log("foodName", foodName, newFood)
-    updateUserFoods(newFood);
+    if(foodExists(userFoods, newFood.name) === undefined){
+      updateUserFoods(newFood);
+    }
+    
   };
 
   const updateFoodsList = (foodsList, foodName) => {
@@ -51,7 +58,6 @@ function Foods (props){
       })
       const  newFood = await res.json()
       console.log("newFood after add to server:", newFood)
-      setFoodsList([...foodsList, newFood.food]);  
       return newFood.food
   } 
 
@@ -69,7 +75,7 @@ function Foods (props){
           <Food food={food} deleteFood={deleteFood}/>
         </React.Fragment>
       ))}
-      <AddFood foodsList={foodsList} addFood={addFood} userFoods={userFoods}/>
+      <AddFood foodsList={foods} addFood={addFood} userFoods={userFoods}/>
     </div>
   )
 }
