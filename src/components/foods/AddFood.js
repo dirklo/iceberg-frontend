@@ -10,19 +10,12 @@ const AddFood = (props) => {
   const {getFoods} = props;
   const { userFoods } = props;
 
-  const foodExists = (data, find) => {
-    return data.find(element => element.name === find)
-  }
-
-  const searchList = foods.map(
-    (food) => { 
-      if(foodExists(userFoods, food.name) === undefined){
-        return( {
-          value: food.id,
-          label: food.name
-        })
-      }      
-    }
+  const searchList = foods.map( (food) => { 
+      return {
+        value: food.id,
+        label: food.name
+      }
+    }  
   )
   
   const onChange = (e) => {
