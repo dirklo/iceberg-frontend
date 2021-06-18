@@ -15,12 +15,9 @@ import Foods from '../foods/Foods';
 function UserProfile(props){
   // const dispatch = useDispatch();
   const { customPath } = props.match.params
-
   const {currentUser} = props;
-  console.log("userProfile:", props, customPath);
   const {getUser} = props;
   const {userProfile} = props;
-  console.log("userProfile:", userProfile, Object.keys(userProfile).length)
   if(userProfile.username !== customPath){
     useEffect(() => {
       getUser(customPath);
