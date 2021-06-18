@@ -112,6 +112,6 @@ UserProfile.defaultProps = {
 
 export default connect(state => {
   return {
-    userProfile: state.userReducer.userProfile
+    userProfile: state.users.userProfile
   }
 }, { getUser })(UserProfile)

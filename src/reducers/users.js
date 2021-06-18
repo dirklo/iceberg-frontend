@@ -2,10 +2,10 @@ const initialState = {
   userProfile: {}
 }
 
-export default function userReducer(state= initialState, action){
+export default function users(state= initialState, action){
   switch(action.type) {
     case "FETCH_USER":
-      console.log("userReducer:", "fetchUser:", action.payload)
+      console.log("users:", "fetchUser:", action.payload)
       return {...state, userProfile: action.payload}
     default:
       return state;

@@ -11,7 +11,7 @@ function Hobbies ({ currentUser }){
 
   //delete Hobby
   const deleteHobby = (id) => {
-    const res = userHobbies.filter(element => element.id !== id)
+    const res = userHobbies.filter(element => element.id !== parseInt(id))
     setUserHobbies(res)
     //Call dispatch for redux here
   }
