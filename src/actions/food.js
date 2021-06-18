@@ -27,3 +27,9 @@ export const getFoods = () => {
     })
   }
 }
+
+export const addToFoods = (food) => {
+  return (dispatch) => {
+    dispatch({type: "ADD_FOOD_TO_FOODS", payload:food})
+  }
+}

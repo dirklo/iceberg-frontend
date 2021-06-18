@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import Food from './Food'
 import AddFood from './AddFood'
+import { addToFoods } from '../../actions/food'
 const backendUrl = 'http://localhost:3001/'
 
 function Foods (props){
@@ -22,6 +23,8 @@ function Foods (props){
     let newFood
     if(foodExists(foods, foodName) === undefined){
       newFood = await createFood(foodName);
+      const { addToFoods } = props;
+      addToFoods(newFood);
     } else {
       newFood = foods.find(food => food.name === foodName);
     }
@@ -85,4 +88,4 @@ export default connect(state => {
     currentUser: state.auth.currentUser,
     foods: state.foodsState.foods
   }
-})(Foods);
+}, { addToFoods })(Foods);
