@@ -55,22 +55,7 @@ function Foods ({ currentUser }){
   const foodExists = (data, find) => {
     return data.find(element => element.name === find)
   }
-
-  //Get Foods List from Server
-  useEffect(() => {   
-    getFoods()
-  }, [])
-
-  const getFoods = async () => {
-    const foodsFromServer = await fetchFoods()
-    setFoodsList(foodsFromServer)
-  }
-
-  const fetchFoods = async () => {
-    const res = await fetch(`${backendUrl}/foods`)
-    const data = await res.json()
-    return data.foods;
-  }
+  
   console.log("userFoods:", userFoods)
   return (
     <div>
