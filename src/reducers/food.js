@@ -3,7 +3,7 @@ const initialState = {
   foodsLoaded: false
 }
 
-export default function foods(state= initialState, action){
+export default function foodsState(state= initialState, action){
   switch(action.type) {
     case "FETCH_FOODS":
       console.log("foods:", "fetchFoods:", action.payload)

@@ -6,7 +6,7 @@ import { getFoods } from '../../actions/food'
 
 const AddFood = (props) => {
   const {foods} = props;
-  const {addFood} = props.addFood;
+   const {addFood} = props;
   const {getFoods} = props;
   const searchList = foods.map(
     (food) => {
@@ -39,7 +39,7 @@ const AddFood = (props) => {
 
 export default connect(state => {
   return {
-    foodsLoaded: state.foods.foodsLoaded,
-    foods: state.foods.foods
+    foodsLoaded: state.foodsState.foodsLoaded,
+    foods: state.foodsState.foods
   }
 }, { getFoods })(AddFood);

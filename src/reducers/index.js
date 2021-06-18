@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import authReducer from "../reducers/auth";
 import users from "./users";
-import foods from './foods';
+import foods from './food';
 
 
 const initialState = { users: [], connectUsers: [] }
@@ -27,5 +27,5 @@ export default combineReducers({
   auth: authReducer,
   appReducer: appReducer,
   users: users,
-  foods: foods,
+  foodsState: foods,
 });
