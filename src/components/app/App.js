@@ -31,7 +31,7 @@ class DebugRouter extends Router {
 
 (function debug() {
   document.addEventListener('click', (e) => {
-    console.log(e.target)
+    // console.log(e.target)
   })
 })()
 
@@ -77,7 +77,7 @@ function App({ logoutUser, loggedIn }) {
           <Route path="/login" render={routerProps => <Login {...routerProps}/>}/>
           <Route path="/connect" component={Dashboard}/> 
           <Route path="/messages" component={Messages}/> 
-          <Route path="/:customPath" component={UsersContainer}/>          
+          <Route path="/:customPath" render={routerProps => <UsersContainer {...routerProps}/>}/>        
         </Switch>
 
         <Footer className= "footer"size="mini">

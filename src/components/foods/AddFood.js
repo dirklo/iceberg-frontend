@@ -1,19 +1,33 @@
 import React from 'react'
 import CreatableSelect from 'react-select/creatable';
+import { useEffect } from 'react'
+import { connect } from 'react-redux';
+import { getFoods } from '../../actions/food'
 
-export default function AddFood({ foodsList, addFood }) {
-  const searchList = foodsList.map(
-    (food) => {
+const AddFood = (props) => {
+  const {foods} = props;
+  const {addFood} = props;
+  const {getFoods} = props;
+  const { userFoods } = props;
+
+  const searchList = foods.map( (food) => { 
       return {
         value: food.id,
         label: food.name
       }
-    }
+    }  
   )
   
   const onChange = (e) => {
     addFood(e.label);
   }
+  console.log("addFood props:", props)
+  console.log("searchList:", searchList)
+  const { foodsLoaded } = props
+  useEffect(() => {
+    foodsLoaded === false && getFoods();
+  })
+  console.log("AddFoods", foods)
   return (
     <div>
       <h4>AddFood</h4>
@@ -24,3 +38,10 @@ export default function AddFood({ foodsList, addFood }) {
     </div>
   )
 }
+
+export default connect(state => {
+  return {
+    foodsLoaded: state.foodsState.foodsLoaded,
+    foods: state.foodsState.foods
+  }
+}, { getFoods })(AddFood);

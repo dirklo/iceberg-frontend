@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3001'
+import {baseUrl} from './urlhelper'
 
 const setToken = (token) => {
   localStorage.setItem("token", token);
@@ -15,7 +15,7 @@ export const getToken = () => {
 };
 
 export const signupUser = (credentials) => {
-    return (dispatch) => {
+    return async (dispatch) => {
       return fetch(`${baseUrl}/signup`, {
         method: "POST",
         headers: {
@@ -71,7 +71,7 @@ export const loginUser = (credentials) => {
 };
   
 export const logoutUser = () => {
-    return (dispatch) => {
+    return async (dispatch) => {
         return fetch(`${baseUrl}/logout`, {
         method: "DELETE",
         headers: {
@@ -94,7 +94,7 @@ export const logoutUser = () => {
 };
 
 export const checkAuth = () => {
-    return (dispatch) => {
+    return async (dispatch) => {
       return fetch(`${baseUrl}/current_user`, {
         headers: {
           Accept: "application/json",
@@ -104,7 +104,7 @@ export const checkAuth = () => {
       }).then((res) => {
         if (res.ok) {
           return res.json().then(user => {
-            console.log(user)
+            console.log("checkAuth:", user)
             dispatch({type: 'AUTHENTICATED', payload: user})
           })
         } else {

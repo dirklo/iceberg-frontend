@@ -5,9 +5,9 @@ import withAuth from '../auth/withAuth'
 
 function UsersContainer() {  
     return (
-        <div className="container border border-amber-200 w-full">    
-          {/* {<h1>Users Data</h1>} */}
-          <Route path={`/:customPath/`} component={withAuth(UserProfile)} />
+        <div className="container border border-amber-200 w-full"> 
+          {/* <Route path={`/:customPath/`} component={withAuth(UserProfile)} /> */}
+          <Route path={`/:customPath/`} render={routerProps => <UserProfile {...routerProps}/>}/>
         </div>
     );
 };
