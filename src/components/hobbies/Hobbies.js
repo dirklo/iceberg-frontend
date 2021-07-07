@@ -1,35 +1,49 @@
 import React from 'react'
-import { useState, useEffect} from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
 import Hobby from './Hobby'
 import AddHobby from './AddHobby'
+import { addToHobbies } from '../../actions/hobby'
 const backendUrl = 'http://localhost:3001/'
 
-function Hobbies ({ currentUser }){
-  const [hobbiesList, setHobbiesList] = useState([])
+function Hobbies (props){
   const [userHobbies, setUserHobbies] = useState([])
 
   //delete Hobby
   const deleteHobby = (id) => {
     const res = userHobbies.filter(element => element.id !== parseInt(id))
+    console.log(id, "deleteHobby", res, "userHobbies:", userHobbies)
     setUserHobbies(res)
     //Call dispatch for redux here
   }
 
   //add Hobby - will be passed to the Add Hobby component and called from AddHobby component
-  const addHobby = async (hobbyName) => {   
-    const newHobby = await updateHobbiesList(hobbiesList, hobbyName)
-    updateUserHobbies(newHobby);
+  const { hobbies } = props;
+  const addHobby = async (hobbyName) => {         
+    let newHobby
+    if(hobbyExists(hobbies, hobbyName) === undefined){
+      newHobby = await createHobby(hobbyName);
+      const { addToHobbies } = props;
+      addToHobbies(newHobby);
+    } else {
+      newHobby = hobbies.find(hobby => hobby.name === hobbyName);
+    }
+    
+    console.log("hobbyName", hobbyName, newHobby)
+    if(hobbyExists(userHobbies, newHobby.name) === undefined){
+      updateUserHobbies(newHobby);
+    }
+    
   };
 
-  const updateHobbiesList = (hobbiesList, hobbyName) => {
-    const fetchedHobby = hobbyExists(hobbiesList, hobbyName);
-    if(fetchedHobby === undefined){
-      return createHobby(hobbyName);
-    } else {
-      return fetchedHobby;
-    }
-  }
+  // const updateHobbiesList = (hobbiesList, hobbyName) => {
+  //   const fetchedHobby = hobbyExists(hobbiesList, hobbyName);
+  //   if(fetchedHobby === undefined){
+  //     return createHobby(hobbyName);
+  //   } else {
+  //     return fetchedHobby;
+  //   }
+  // }
 
   const updateUserHobbies = (newHobby) => {
     setUserHobbies([...userHobbies, newHobby])
@@ -47,29 +61,13 @@ function Hobbies ({ currentUser }){
       })
       const  newHobby = await res.json()
       console.log("newHobby after add to server:", newHobby)
-      setHobbiesList([...hobbiesList, newHobby.hobby]);  
       return newHobby.hobby
   } 
 
   const hobbyExists = (data, find) => {
     return data.find(element => element.name === find)
   }
-
-  //Get Hobbies List from Server
-  useEffect(() => {   
-    getHobbies()
-  }, [])
-
-  const getHobbies = async () => {
-    const hobbiesFromServer = await fetchHobbies()
-    setHobbiesList(hobbiesFromServer)
-  }
-
-  const fetchHobbies = async () => {
-    const res = await fetch(`${backendUrl}/hobbies`)
-    const data = await res.json()
-    return data.hobbies;
-  }
+  
   console.log("userHobbies:", userHobbies)
   return (
     <div>
@@ -80,13 +78,14 @@ function Hobbies ({ currentUser }){
           <Hobby hobby={hobby} deleteHobby={deleteHobby}/>
         </React.Fragment>
       ))}
-      <AddHobby hobbiesList={hobbiesList} addHobby={addHobby}/>
+      <AddHobby hobbiesList={hobbies} addHobby={addHobby} userHobbies={userHobbies}/>
     </div>
   )
 }
 
 export default connect(state => {
   return {
-    currentUser: state.auth.currentUser
+    currentUser: state.auth.currentUser,
+    hobbies: state.hobbiesState.hobbies
   }
-})(Hobbies);
+}, { addToHobbies })(Hobbies);

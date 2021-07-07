@@ -8,9 +8,9 @@ const Food = ({ food, deleteFood }) => {
   }
   return (
     <div>
-      <h3>
-        {food.name} <DeleteButton id={food.id} deleteFood={onDelete}/>
-      </h3>
+      <h3 data-testid="item">
+        {food.name} 
+      </h3><DeleteButton id={food.id} deleteFood={onDelete}/>
     </div>
   )
 }

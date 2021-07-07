@@ -9,8 +9,10 @@ import Button from '../button/button';
 import ProfileList from './ProfileList';
 import { FaEnvelope } from 'react-icons/fa';
 import { FaPhoneAlt } from 'react-icons/fa';
-import Hobbies from '../hobbies/Hobbies';
 import Foods from '../foods/Foods';
+// import Hobbies from '../hobbies/Hobbies';
+
+
 
 function UserProfile(props){
   // const dispatch = useDispatch();
@@ -18,11 +20,21 @@ function UserProfile(props){
   const {currentUser} = props;
   const {getUser} = props;
   const {userProfile} = props;
-  if(userProfile.username !== customPath){
-    useEffect(() => {
-      getUser(customPath);
-    })
+
+  const reload = () => {
+    if (isNaN(parseInt(customPath))) {
+      if (userProfile.username !== customPath) return true
+    } else {
+      if (userProfile.id !== parseInt(customPath)) return true
+    }
+    return false
   }
+
+  useEffect(() => {
+    if (reload()){
+      getUser(customPath);
+    }
+  })
   
   return (
     <React.Fragment>
@@ -78,7 +90,7 @@ function UserProfile(props){
               </div>
               {/* Pass in a 'listArr' prop to the Hobbies and Foods lists */}
               {/* <ProfileList name={"Hobbies"} listArr={currentUser.hobbies}/> */}
-              <Hobbies/>
+              {/* <Hobbies/> */}
               <Foods/>
               {/* <ProfileList name={"Favorite foods"} listArr={currentUser.foods}/> */}
               {/* <ProfileList name={"Favorite foods"}/>

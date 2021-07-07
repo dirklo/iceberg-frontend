@@ -1,14 +1,12 @@
 import { baseUrl } from './urlhelper'
 // import { createAction, createReducer } from '@reduxjs/toolkit'
-import { fetchFoods, addFood } from '../reducers/food'
+// import { addHobby } from '../reducers/hobby'
 
-
-
-export const getFoods = () => {
-  console.log("getFoods:")
+export const getHobbies = () => {
+  console.log("getHobbies:")
   return async (dispatch) => {
-    console.log("willFetch Foods")
-    return fetch(`${baseUrl}/foods`,{
+    console.log("willFetch Hobbies")
+    return fetch(`${baseUrl}/hobbies`,{
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -18,9 +16,9 @@ export const getFoods = () => {
       if(res.ok){
         return res
           .json()
-          .then((foodsJson) =>{
-            console.log("will dispatch foods", foodsJson);
-            dispatch(fetchFoods(foodsJson));
+          .then((hobbiesJson) =>{
+            console.log("will dispatch hobbies", hobbiesJson);
+            dispatch({type: "FETCH_HOBBIES", payload:hobbiesJson})
           })
       } else {
         return res.json()
@@ -32,10 +30,10 @@ export const getFoods = () => {
   }
 }
 
-// export const addToFoods = createAction('foods/addFood');
+// export const addToHobbies = createAction('hobbies/addHobby');
 
-export const addToFoods = (food) => {
+export const addToHobbies = (hobby) => {
   return (dispatch) => {
-    dispatch(addFood(food))
+    dispatch({type: "ADD_HOBBY_TO_HOBBIES", payload:hobby})
   }
 }
