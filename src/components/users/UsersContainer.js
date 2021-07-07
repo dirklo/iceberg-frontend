@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import UserProfile from './UserProfile'
-import withAuth from '../auth/withAuth'
+// import withAuth from '../auth/withAuth'
 
 function UsersContainer() {  
     return (

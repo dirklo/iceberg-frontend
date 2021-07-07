@@ -1,4 +1,6 @@
 import { baseUrl } from './urlhelper'
+// import { createAction, createReducer } from '@reduxjs/toolkit'
+// import { addFood } from '../reducers/food'
 
 export const getFoods = () => {
   console.log("getFoods:")
@@ -27,6 +29,8 @@ export const getFoods = () => {
     })
   }
 }
+
+// export const addToFoods = createAction('foods/addFood');
 
 export const addToFoods = (food) => {
   return (dispatch) => {

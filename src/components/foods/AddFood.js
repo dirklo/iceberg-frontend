@@ -8,7 +8,7 @@ const AddFood = (props) => {
   const {foods} = props;
   const {addFood} = props;
   const {getFoods} = props;
-  const { userFoods } = props;
+  // const { userFoods } = props;
 
   const searchList = foods.map( (food) => { 
       return {

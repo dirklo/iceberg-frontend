@@ -36,14 +36,14 @@ function Foods (props){
     
   };
 
-  const updateFoodsList = (foodsList, foodName) => {
-    const fetchedFood = foodExists(foodsList, foodName);
-    if(fetchedFood === undefined){
-      return createFood(foodName);
-    } else {
-      return fetchedFood;
-    }
-  }
+  // const updateFoodsList = (foodsList, foodName) => {
+  //   const fetchedFood = foodExists(foodsList, foodName);
+  //   if(fetchedFood === undefined){
+  //     return createFood(foodName);
+  //   } else {
+  //     return fetchedFood;
+  //   }
+  // }
 
   const updateUserFoods = (newFood) => {
     setUserFoods([...userFoods, newFood])

@@ -1,7 +1,26 @@
-const initialState = {
+// import { createSlice } from '@reduxjs/toolkit'
+
+export const initialState = {
   foods: [],
   foodsLoaded: false
 }
+
+// const foodSlice = createSlice({
+//   name: 'foods',
+//   initialState,
+//   reducers: {
+//     fetchFoods(state, action){
+//       return {...state, foodsLoaded: true, foods: action.payload}
+//     },
+//     addFood(state, action){
+//       return {...state, foods: [...state.foods, action.payload]}
+//     }
+//   }
+// })
+
+// export const { fetchFoods, addFood } = foodSlice.actions
+
+// export default foodSlice.reducer
 
 export default function foodsState(state= initialState, action){
   switch(action.type) {
