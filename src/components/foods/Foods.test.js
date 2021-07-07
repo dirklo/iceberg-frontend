@@ -10,3 +10,5 @@ describe('Foods', () => {
     const {getByTestId} = render(<Foods />)
   })
 })
+
+afterEach(cleanup)

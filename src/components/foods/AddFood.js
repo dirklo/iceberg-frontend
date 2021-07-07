@@ -11,7 +11,8 @@ const AddFood = (props) => {
   // const { userFoods } = props;
 
   const searchList = foods.map( (food) => { 
-      return {
+    console.log("food:", food)  
+    return {
         value: food.id,
         label: food.name
       }

@@ -11,7 +11,7 @@ describe('DeleteButton', () => {
     function onDelete() {
       done();
     }
-    const {getByText, getByTestId} = render(<DeleteButton id={1} deleteFood={onDelete}/>)
+    const {getByText} = render(<DeleteButton id={1} deleteFood={onDelete}/>)
     const btn = getByText('Delete')
     expect(btn.id).toBe('1')
     fireEvent.click(btn)

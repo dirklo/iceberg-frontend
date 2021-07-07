@@ -19,7 +19,9 @@ function Foods (props){
 
   //add Food - will be passed to the Add Food component and called from AddFood component
   const { foods } = props;
+  const { userProfile } = props;
   const addFood = async (foodName) => {         
+    console.log("will add food")
     let newFood
     if(foodExists(foods, foodName) === undefined){
       newFood = await createFood(foodName);
@@ -27,23 +29,15 @@ function Foods (props){
       addToFoods(newFood);
     } else {
       newFood = foods.find(food => food.name === foodName);
+      console.log("addFood newFood:", newFood);
     }
     
     console.log("foodName", foodName, newFood)
     if(foodExists(userFoods, newFood.name) === undefined){
-      updateUserFoods(newFood);
+      // updateUserFoods(newFood);
     }
     
   };
-
-  // const updateFoodsList = (foodsList, foodName) => {
-  //   const fetchedFood = foodExists(foodsList, foodName);
-  //   if(fetchedFood === undefined){
-  //     return createFood(foodName);
-  //   } else {
-  //     return fetchedFood;
-  //   }
-  // }
 
   const updateUserFoods = (newFood) => {
     setUserFoods([...userFoods, newFood])
@@ -51,41 +45,41 @@ function Foods (props){
 
   //Create a new food in the db - Called from updateFoodsList
   const createFood = async (foodName) => {
-    const data = {name: foodName};
-      const res = await fetch(`${backendUrl}/foods`,{
+    const data = [{name: foodName}];
+      const res = await fetch(`${backendUrl}/users/${userProfile.id}/usersfood`,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
       })
-      const  newFood = await res.json()
-      console.log("newFood after add to server:", newFood)
-      return newFood.food
+      return await res.json()
   } 
 
   const foodExists = (data, find) => {
     return data.find(element => element.name === find)
   }
   
-  console.log("userFoods:", userFoods)
+  console.log("userProfile.foods:", userProfile.foods)
+  console.log("Foods Props", props)
+  console.log("userProfile Foods", userProfile.foods)
   return (
     <div>
       <h1>Foods</h1>
 
-      {userFoods.length > 0 && userFoods.map((food) => (
+      {userProfile.foods !== undefined && userProfile.foods.map((food) => (
         <React.Fragment key={food.id}>
           <Food food={food} deleteFood={deleteFood}/>
         </React.Fragment>
       ))}
-      <AddFood foodsList={foods} addFood={addFood} userFoods={userFoods}/>
+      <AddFood userProfile={userProfile} addFood={addFood}/>
     </div>
   )
 }
 
 export default connect(state => {
   return {
-    currentUser: state.auth.currentUser,
-    foods: state.foodsState.foods
+    foods: state.foodsState.foods,    
+    userProfile: state.usersState.userProfile
   }
 }, { addToFoods })(Foods);

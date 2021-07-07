@@ -1,6 +1,8 @@
 import { baseUrl } from './urlhelper'
 // import { createAction, createReducer } from '@reduxjs/toolkit'
-// import { addFood } from '../reducers/food'
+import { fetchFoods, addFood } from '../reducers/food'
+
+
 
 export const getFoods = () => {
   console.log("getFoods:")
@@ -18,7 +20,7 @@ export const getFoods = () => {
           .json()
           .then((foodsJson) =>{
             console.log("will dispatch foods", foodsJson);
-            dispatch({type: "FETCH_FOODS", payload:foodsJson})
+            dispatch(fetchFoods(foodsJson));
           })
       } else {
         return res.json()
@@ -34,6 +36,6 @@ export const getFoods = () => {
 
 export const addToFoods = (food) => {
   return (dispatch) => {
-    dispatch({type: "ADD_FOOD_TO_FOODS", payload:food})
+    dispatch(addFood(food))
   }
 }

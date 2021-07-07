@@ -8,7 +8,7 @@ import Food from './Food'
 describe('Food', () => {
   it('renders Food', () => {
     const food = {id: 1, name: "test"}
-    const {getByTestId, container} = render(<Food food={food}/>)
+    const {getByTestId} = render(<Food food={food}/>)
     const elem = getByTestId('item')
     expect(elem.innerHTML).toBe('test')
   })
