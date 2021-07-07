@@ -1,5 +1,5 @@
 import React from 'react'
-import CreatableSelect from 'react-select/creatable';
+// import CreatableSelect from 'react-select/creatable';
 
 export default function AddHobby({ hobbiesList, addHobby }) {
   const searchList = hobbiesList.map(
@@ -16,10 +16,10 @@ export default function AddHobby({ hobbiesList, addHobby }) {
   return (
     <div>
       <h4>AddHobby</h4>
-      <CreatableSelect 
+      {/* <CreatableSelect 
         options={searchList}
         onChange={(e) => onChange(e)}
-      />
+      /> */}
     </div>
   )
 }

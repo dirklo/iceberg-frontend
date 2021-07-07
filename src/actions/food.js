@@ -17,7 +17,7 @@ export const getFoods = () => {
         return res
           .json()
           .then((foodsJson) =>{
-            console.log("will dispatch foods")
+            console.log("will dispatch foods", foodsJson);
             dispatch({type: "FETCH_FOODS", payload:foodsJson})
           })
       } else {

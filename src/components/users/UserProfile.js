@@ -18,11 +18,12 @@ function UserProfile(props){
   const {currentUser} = props;
   const {getUser} = props;
   const {userProfile} = props;
-  if(userProfile.username !== customPath){
-    useEffect(() => {
+  
+  useEffect(() => {
+    if(userProfile.username !== customPath){
       getUser(customPath);
-    })
-  }
+    }
+  })
   
   return (
     <React.Fragment>
@@ -78,7 +79,7 @@ function UserProfile(props){
               </div>
               {/* Pass in a 'listArr' prop to the Hobbies and Foods lists */}
               {/* <ProfileList name={"Hobbies"} listArr={currentUser.hobbies}/> */}
-              <Hobbies/>
+              {/* <Hobbies/> */}
               <Foods/>
               {/* <ProfileList name={"Favorite foods"} listArr={currentUser.foods}/> */}
               {/* <ProfileList name={"Favorite foods"}/>
