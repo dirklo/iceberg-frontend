@@ -1,25 +1,44 @@
 import React from 'react'
-// import CreatableSelect from 'react-select/creatable';
+import CreatableSelect from 'react-select/creatable';
+import { useEffect } from 'react'
+import { connect } from 'react-redux';
+import { getHobbies } from '../../actions/hobby';
 
-export default function AddHobby({ hobbiesList, addHobby }) {
-  const searchList = hobbiesList.map(
-    (hobby) => {
-      return {
-        value: hobby.id,
-        label: hobby.name
-      }
+const AddHobby = (props) => {
+  const {hobbies} = props;
+  const {addHobby} = props;
+  const {getHobbies} = props;
+
+  const searchList = hobbies.map( (food) => { 
+    return {
+      value: food.id,
+      label: food.name
     }
-  )
+  } )
+   
   const onChange = (e) => {
     addHobby(e.label);
   }
+
+  const { hobbiesLoaded } = props
+  useEffect(() => {
+    hobbiesLoaded === false && getHobbies();
+  })
+
   return (
     <div>
       <h4>AddHobby</h4>
-      {/* <CreatableSelect 
+      <CreatableSelect 
         options={searchList}
         onChange={(e) => onChange(e)}
-      /> */}
+      />
     </div>
   )
 }
+
+export default connect(state => {
+  return {
+    hobbiesLoaded: state.hobbiesState.hobbiesLoaded,
+    hobbies: state.hobbiesState.hobbies
+  }
+}, { getHobbies })(AddHobby);
