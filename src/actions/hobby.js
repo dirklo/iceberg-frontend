@@ -1,11 +1,7 @@
 import { baseUrl } from './urlhelper'
-// import { createAction, createReducer } from '@reduxjs/toolkit'
-// import { addHobby } from '../reducers/hobby'
 
 export const getHobbies = () => {
-  console.log("getHobbies:")
   return async (dispatch) => {
-    console.log("willFetch Hobbies")
     return fetch(`${baseUrl}/hobbies`,{
       method: 'GET',
       headers: {
@@ -17,7 +13,6 @@ export const getHobbies = () => {
         return res
           .json()
           .then((hobbiesJson) =>{
-            console.log("will dispatch hobbies", hobbiesJson);
             dispatch({type: "FETCH_HOBBIES", payload:hobbiesJson})
           })
       } else {
@@ -30,10 +25,51 @@ export const getHobbies = () => {
   }
 }
 
-// export const addToHobbies = createAction('hobbies/addHobby');
+export const addToUserHobbies = (info) => {
+  return async(dispatch) => {
+    return fetch(`${baseUrl}/users/${info.userId}/usershobby`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        "content-type": 'application/json'
+      },
+      body: JSON.stringify({hobbies: info.hobbies})
+    }).then(async (res) => {
+      if(res.ok){
+        return res
+          .json()
+          .then (resJson => {
+            dispatch({type: "ADD_TO_USER_HOBBIES", payload: resJson.added})
+            dispatch({type: "ADD_HOBBIES", payload: resJson.created})
+          })
+      } else {
+        return res.json()
+          .then(errors => {
+            return Promise.reject(errors.message)
+          })
+      }
+    })    
+  }
+}
 
-export const addToHobbies = (hobby) => {
-  return (dispatch) => {
-    dispatch({type: "ADD_HOBBY_TO_HOBBIES", payload:hobby})
+export const deleteUserHobby = (info) => {
+  return async(dispatch) => {
+    
+    return fetch(`${baseUrl}/users/${info.userId}/usershobby/${info.id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        "content-type": 'application/json'
+      },
+    }).then(async (res) => {
+      if(res.ok){
+        dispatch({type: "DELETE_USER_HOBBY", payload: info.id})
+      } else {
+        return res.json()
+          .then(errors => {
+            return Promise.reject(errors.message)
+          })
+      }
+    })    
   }
 }

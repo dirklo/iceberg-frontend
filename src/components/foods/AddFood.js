@@ -42,7 +42,6 @@ const AddFood = (props) => {
   useEffect(() => {
     foodsLoaded === false && getFoods();
   })
-  console.log("AddFood", searchList, foodsList)
   
   return (
     <div>

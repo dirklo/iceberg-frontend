@@ -104,7 +104,6 @@ export const checkAuth = () => {
       }).then((res) => {
         if (res.ok) {
           return res.json().then(user => {
-            console.log("checkAuth:", user)
             dispatch({type: 'AUTHENTICATED', payload: user})
           })
         } else {

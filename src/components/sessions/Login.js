@@ -27,7 +27,7 @@ function Login({ loginUser }){
 
   (function debug() {
     document.addEventListener('click', (e) => {
-      // console.log(e.target)
+      
     })
   })()
 

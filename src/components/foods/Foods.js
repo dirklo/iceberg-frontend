@@ -9,13 +9,9 @@ function Foods (props){
   const { deleteUserFood } = props
   //delete Food
   const deleteFood = (id) => {
-    console.log("props", props)
-    console.log("userProps after before", userProfile)
     deleteUserFood({userId: userProfile.id, id: id})
-    console.log("userProps after delete", userProfile)
   }
   
-  console.log("Foods Props", props)
   return (
     <div>
       <h1>Foods</h1>
