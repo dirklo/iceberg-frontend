@@ -11,14 +11,11 @@ const foodSlice = createSlice({
   reducers: {
     fetchFoods(state, action){
       return {...state, foodsLoaded: true, foods: action.payload}
-    },
-    addFood(state, action){
-      return {...state, foods: [...state.foods, action.payload]}
     }
   }
 })
 
-export const { fetchFoods, addFood } = foodSlice.actions
+export const { fetchFoods } = foodSlice.actions
 
 export default foodSlice.reducer
 
