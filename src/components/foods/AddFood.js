@@ -21,12 +21,14 @@ const AddFood = (props) => {
   //[X] the action to add a users food will necessarily update the redux store for foods associated with the user and update the local list of all foods available on in the database
 
   //create our search list, check if user as food already associated, if not, make an option
-  const searchList = foodsList.filter( food => userFoods.indexOf(food) !== -1 ).map( food => {
-    return {
-      value: food.id,
-      label: food.name
-    }
-  })
+  const searchList = foodsList.filter( food => {
+    const result = userFoods.find(f => f.name === food.name)
+    return result === undefined || !result}).map( food => {
+        return {
+          value: food.id,
+          label: food.name
+        }
+      })
   
   const onChange = (e) => {
     const infoPacket = {
@@ -40,7 +42,8 @@ const AddFood = (props) => {
   useEffect(() => {
     foodsLoaded === false && getFoods();
   })
-
+  console.log("AddFood", searchList, foodsList)
+  
   return (
     <div>
       <h4>AddFood</h4>

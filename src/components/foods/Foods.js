@@ -1,21 +1,19 @@
 import React from 'react'
-import { useState } from 'react';
 import { connect } from 'react-redux';
 import Food from './Food'
 import AddFood from './AddFood'
+import { deleteUserFood } from '../../actions/food'
 
 function Foods (props){
-  const [userFoods, setUserFoods] = useState([])
-
+  const { userProfile } = props
+  const { deleteUserFood } = props
   //delete Food
   const deleteFood = (id) => {
-    const res = userFoods.filter(element => element.id !== parseInt(id))
-    console.log(id, "deleteFood", res, "userFoods:", userFoods)
-    setUserFoods(res)
-    //Call dispatch for redux here
+    console.log("props", props)
+    console.log("userProps after before", userProfile)
+    deleteUserFood({userId: userProfile.id, id: id})
+    console.log("userProps after delete", userProfile)
   }
-
-  const { userProfile } = props;
   
   console.log("Foods Props", props)
   return (
@@ -37,4 +35,4 @@ export default connect(state => {
     foods: state.foodsState.foods,    
     userProfile: state.usersState.userProfile
   }
-})(Foods);
+}, { deleteUserFood })(Foods);

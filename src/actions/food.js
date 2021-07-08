@@ -1,7 +1,4 @@
 import { baseUrl } from './urlhelper'
-// import { createAction, createReducer } from '@reduxjs/toolkit'
-
-
 
 export const getFoods = () => {
   return async (dispatch) => {
@@ -27,7 +24,6 @@ export const getFoods = () => {
     })
   }
 }
-
 
 export const addToUserFoods = (info) => {
   return async(dispatch) => {
@@ -55,3 +51,28 @@ export const addToUserFoods = (info) => {
     })    
   }
 }
+
+export const deleteUserFood = (info) => {
+  console.log("deleteUserFood called")
+  return async(dispatch) => {
+    
+    return fetch(`${baseUrl}/users/${info.userId}/usersfood/${info.id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        "content-type": 'application/json'
+      },
+    }).then(async (res) => {
+      if(res.ok){
+        console.log("res")
+        dispatch({type: "DELETE_USER_FOOD", payload: info.id})
+      } else {
+        return res.json()
+          .then(errors => {
+            return Promise.reject(errors.message)
+          })
+      }
+    })    
+  }
+}
+
