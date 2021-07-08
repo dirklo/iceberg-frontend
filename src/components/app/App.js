@@ -19,7 +19,6 @@ import Messages from '../users/Messages'
 class DebugRouter extends Router {
   constructor(props){
     super(props);
-    console.log('initial history is: ', JSON.stringify(this.history, null,2))
     this.history.listen((location, action)=>{
       console.log(
         `The current URL is ${location.pathname}${location.search}${location.hash}`
@@ -31,7 +30,7 @@ class DebugRouter extends Router {
 
 (function debug() {
   document.addEventListener('click', (e) => {
-    // console.log(e.target)
+    
   })
 })()
 

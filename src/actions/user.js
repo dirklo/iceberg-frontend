@@ -17,7 +17,6 @@ const getUser = (id) => {
         })
       } else {
         return res.json().then((errors) => {
-          console.log(errors)
           return Promise.reject(errors.message)
         })
       }

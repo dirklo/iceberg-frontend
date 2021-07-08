@@ -10,7 +10,7 @@ import ProfileList from './ProfileList';
 import { FaEnvelope } from 'react-icons/fa';
 import { FaPhoneAlt } from 'react-icons/fa';
 import Foods from '../foods/Foods';
-// import Hobbies from '../hobbies/Hobbies';
+import Hobbies from '../hobbies/Hobbies';
 
 
 
@@ -90,7 +90,7 @@ function UserProfile(props){
               </div>
               {/* Pass in a 'listArr' prop to the Hobbies and Foods lists */}
               {/* <ProfileList name={"Hobbies"} listArr={currentUser.hobbies}/> */}
-              {/* <Hobbies/> */}
+              <Hobbies/>
               <Foods/>
               {/* <ProfileList name={"Favorite foods"} listArr={currentUser.foods}/> */}
               {/* <ProfileList name={"Favorite foods"}/>
