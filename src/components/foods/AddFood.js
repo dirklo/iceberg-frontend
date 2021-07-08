@@ -16,9 +16,9 @@ const AddFood = (props) => {
   const { addToUserFoods } = props;
   
   //[X] I want to display foods list minus any the user has already associated to them
-  //I want to add a selected food to the user
-  //when the server responds to the add request, I'll receive an array that includes foods added to the user along with another array that contains food added to the foods database
-  //the action to add a users food will necessarily update the redux store for foods associated with the user and update the local list of all foods available on in the database
+  //[X] I want to add a selected food to the user
+  //[X] when the server responds to the add request, I'll receive an array that includes foods added to the user along with another array that contains food added to the foods database
+  //[X] the action to add a users food will necessarily update the redux store for foods associated with the user and update the local list of all foods available on in the database
 
   //create our search list, check if user as food already associated, if not, make an option
   const searchList = foodsList.filter( food => userFoods.indexOf(food) !== -1 ).map( food => {
