@@ -48,8 +48,10 @@ const AddFood = (props) => {
     <div>
       <h4>AddFood</h4>
       <CreatableSelect 
+        isClearable
         options={searchList}
         onChange={(e) => onChange(e)}
+        value = {""}
       />
     </div>
   )
