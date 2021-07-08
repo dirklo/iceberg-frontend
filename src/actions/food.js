@@ -1,41 +1,78 @@
 import { baseUrl } from './urlhelper'
-// import { createAction, createReducer } from '@reduxjs/toolkit'
-import { fetchFoods, addFood } from '../reducers/food'
-
-
 
 export const getFoods = () => {
-  console.log("getFoods:")
   return async (dispatch) => {
-    console.log("willFetch Foods")
     return fetch(`${baseUrl}/foods`,{
       method: 'GET',
       headers: {
         Accept: 'application/json',
         "content-type": 'application/json'
       }
-    }).then((res) => {
+    }).then(async (res) => {
       if(res.ok){
         return res
           .json()
           .then((foodsJson) =>{
-            console.log("will dispatch foods", foodsJson);
-            dispatch(fetchFoods(foodsJson));
+            dispatch({type: "FETCH_FOODS", payload:foodsJson});
           })
       } else {
         return res.json()
           .then((errors) =>{
-            return Promise.reject(errors.status.message)
+            return Promise.reject(errors.message)
           })
       }
     })
   }
 }
 
-// export const addToFoods = createAction('foods/addFood');
-
-export const addToFoods = (food) => {
-  return (dispatch) => {
-    dispatch(addFood(food))
+export const addToUserFoods = (info) => {
+  return async(dispatch) => {
+    return fetch(`${baseUrl}/users/${info.userId}/usersfood`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        "content-type": 'application/json'
+      },
+      body: JSON.stringify({foods: info.foods})
+    }).then(async (res) => {
+      if(res.ok){
+        return res
+          .json()
+          .then (resJson => {
+            dispatch({type: "ADD_TO_USER_FOODS", payload: resJson.added})
+            dispatch({type: "ADD_FOODS", payload: resJson.created})
+          })
+      } else {
+        return res.json()
+          .then(errors => {
+            return Promise.reject(errors.message)
+          })
+      }
+    })    
   }
 }
+
+export const deleteUserFood = (info) => {
+  console.log("deleteUserFood called")
+  return async(dispatch) => {
+    
+    return fetch(`${baseUrl}/users/${info.userId}/usersfood/${info.id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        "content-type": 'application/json'
+      },
+    }).then(async (res) => {
+      if(res.ok){
+        console.log("res")
+        dispatch({type: "DELETE_USER_FOOD", payload: info.id})
+      } else {
+        return res.json()
+          .then(errors => {
+            return Promise.reject(errors.message)
+          })
+      }
+    })    
+  }
+}
+

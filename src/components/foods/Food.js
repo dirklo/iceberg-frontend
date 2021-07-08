@@ -3,7 +3,6 @@ import DeleteButton from './DeleteButton'
 
 const Food = ({ food, deleteFood }) => {
   const onDelete = (e) => {
-    console.log("deleteFood")
     deleteFood(e.target.id)
   }
   return (
