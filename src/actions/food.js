@@ -4,9 +4,7 @@ import { baseUrl } from './urlhelper'
 
 
 export const getFoods = () => {
-  console.log("getFoods:")
   return async (dispatch) => {
-    console.log("willFetch Foods")
     return fetch(`${baseUrl}/foods`,{
       method: 'GET',
       headers: {
@@ -18,7 +16,6 @@ export const getFoods = () => {
         return res
           .json()
           .then((foodsJson) =>{
-            console.log("will dispatch foods", foodsJson);
             dispatch({type: "FETCH_FOODS", payload:foodsJson});
           })
       } else {
@@ -33,9 +30,7 @@ export const getFoods = () => {
 
 
 export const addToUserFoods = (info) => {
-  console.log("addToUserFoods", info, `${baseUrl}/users/${info.userId}/usersfood`);
   return async(dispatch) => {
-    console.log(info, "will fetch")
     return fetch(`${baseUrl}/users/${info.userId}/usersfood`, {
       method: 'POST',
       headers: {
@@ -44,13 +39,10 @@ export const addToUserFoods = (info) => {
       },
       body: JSON.stringify({foods: info.foods})
     }).then(async (res) => {
-      console.log("here")
       if(res.ok){
         return res
           .json()
           .then (resJson => {
-            //dispatch here
-            console.log("resJson:", resJson)
             dispatch({type: "ADD_TO_USER_FOODS", payload: resJson.added})
             dispatch({type: "ADD_FOODS", payload: resJson.created})
           })
