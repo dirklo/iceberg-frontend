@@ -7,6 +7,7 @@ import { addToUserFoods } from '../../actions/food'
 
 const AddFood = (props) => {
   let userFoods = []
+  console.log("addFoods:", props)
   if(props.userProfile.foods !== undefined){
     userFoods = props.userProfile.foods
   }  
