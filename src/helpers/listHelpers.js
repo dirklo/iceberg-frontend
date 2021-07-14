@@ -13,3 +13,25 @@ export function makeAvailableList(thingList, userThingList){
     }
   })
 }
+
+// I want to create an array of objects {name: "name"} to be able to dispatch to my API for addition, this list should not contain items alread associated
+export function createItems(list, currentList){
+  return list.filter( item => {
+    const result = currentList.find( t => t.name === item.label)
+    return result === undefined || !result
+  }).map( item => {
+    return {
+      name: item.label
+    }
+  })
+}
+
+//I want to produce a list of items to delete from currentList if list does not contain
+export function deleteItems(list, currentList){
+  return currentList.filter( item => {
+    const result = list.find( t => t.label === item.name)
+    return result === undefined
+  }).map( item => {
+    return item.id
+  })
+}

@@ -14,7 +14,11 @@ export default function usersState(state= initialState, action){
       }
       return {...state, userProfile: userProfile}
     case "DELETE_USER_FOOD":
-    let usersFoods = state.userProfile.foods.filter((food) => food.id !== parseInt(action.payload))
+      const ids = action.payload.split(",")
+      let usersFoods = state.userProfile.foods.filter((food) => {
+          const result = ids.find(toDelete => toDelete === food.id)
+        return result === undefined
+      })
       return {...state, userProfile: usersFoods}
     case "ADD_TO_USER_HOBBIES":
       userProfile = [...state.userProfile.hobbies];
