@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { getFoods } from '../../actions/food'
 import { addToUserFoods } from '../../actions/food'
+import { makeAvailableList } from '../../helpers/listHelpers'
 
 const AddFood = (props) => {
   let userFoods = []
@@ -20,16 +21,6 @@ const AddFood = (props) => {
   //[X] I want to add a selected food to the user
   //[X] when the server responds to the add request, I'll receive an array that includes foods added to the user along with another array that contains food added to the foods database
   //[X] the action to add a users food will necessarily update the redux store for foods associated with the user and update the local list of all foods available on in the database
-
-  //create our search list, check if user as food already associated, if not, make an option
-  const searchList = foodsList.filter( food => {
-    const result = userFoods.find(f => f.name === food.name)
-    return result === undefined || !result}).map( food => {
-        return {
-          value: food.id,
-          label: food.name
-        }
-      })
   
   const onChange = (e) => {
     const infoPacket = {
@@ -49,7 +40,7 @@ const AddFood = (props) => {
       <h4>AddFood</h4>
       <CreatableSelect 
         isClearable
-        options={searchList}
+        options={makeAvailableList(foodsList, userFoods)}
         onChange={(e) => onChange(e)}
         value = {""}
       />
