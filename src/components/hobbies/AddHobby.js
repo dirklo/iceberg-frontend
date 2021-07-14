@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { getHobbies } from '../../actions/hobby'
 import { addToUserHobbies } from '../../actions/hobby'
+import { makeAvailableList } from '../../helpers/listHelpers'
 
 const AddHobby = (props) => {
   let userHobbies = []
@@ -19,16 +20,6 @@ const AddHobby = (props) => {
   //[X] I want to add a selected hobby to the user
   //[X] when the server responds to the add request, I'll receive an array that includes hobbies added to the user along with another array that contains hobby added to the hobbies database
   //[X] the action to add a users hobby will necessarily update the redux store for hobbies associated with the user and update the local list of all hobbies available on in the database
-
-  //create our search list, check if user as hobby already associated, if not, make an option
-  const searchList = hobbiesList.filter( hobby => {
-    const result = userHobbies.find(f => f.name === hobby.name)
-    return result === undefined || !result}).map( hobby => {
-        return {
-          value: hobby.id,
-          label: hobby.name
-        }
-      })
   
   const onChange = (e) => {
     const infoPacket = {
@@ -48,7 +39,7 @@ const AddHobby = (props) => {
       <h4>AddHobby</h4>
       <CreatableSelect 
         isClearable
-        options={searchList}
+        options={makeAvailableList(hobbiesList, userHobbies)}
         onChange={(e) => onChange(e)}
         value = {""}
       />
