@@ -55,7 +55,7 @@ export const addToUserHobbies = (info) => {
 export const deleteUserHobby = (info) => {
   return async(dispatch) => {
     
-    return fetch(`${baseUrl}/users/${info.userId}/usershobby/${info.id}`, {
+    return fetch(`${baseUrl}/users/${info.userId}/usershobby/${info.ids}`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
@@ -63,7 +63,7 @@ export const deleteUserHobby = (info) => {
       },
     }).then(async (res) => {
       if(res.ok){
-        dispatch({type: "DELETE_USER_HOBBY", payload: info.id})
+        dispatch({type: "DELETE_USER_HOBBY", payload: info.ids})
       } else {
         return res.json()
           .then(errors => {

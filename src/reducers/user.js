@@ -4,6 +4,7 @@ const initialState = {
 
 export default function usersState(state= initialState, action){
   let userProfile = []
+  let ids
   switch(action.type) {
     case "FETCH_USER":
       return {...state, userProfile: action.payload}
@@ -14,7 +15,7 @@ export default function usersState(state= initialState, action){
       }
       return {...state, userProfile: userProfile}
     case "DELETE_USER_FOOD":
-      const ids = action.payload.split(",")
+      ids = action.payload.split(",")
       let usersFoods = state.userProfile.foods.filter((food) => {
           const result = ids.find(toDelete => toDelete === food.id)
         return result === undefined
@@ -27,7 +28,11 @@ export default function usersState(state= initialState, action){
       }
       return {...state, userProfile: userProfile}
     case "DELETE_USER_HOBBY":
-      let userHobbies = state.userProfile.hobbies.filter((hobby) => hobby.id !== parseInt(action.payload))
+      ids = action.payload.split(",")
+      let userHobbies = state.userProfile.foods.filter((hobby) => {
+        const result = ids.find(toDelete => toDelete === hobby.id)
+        return result === undefined
+      })
       return {...state, userProfile: userHobbies}
     default:
       return state;

@@ -3,7 +3,7 @@ import {
   render 
 } from "@testing-library/react";
 import React from 'react';
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 import AddFood from './AddFood'
 import store from '../../store'
 
