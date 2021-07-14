@@ -54,16 +54,15 @@ export const addToUserFoods = (info) => {
 
 export const deleteUserFood = (info) => {
   return async(dispatch) => {
-    
-    return fetch(`${baseUrl}/users/${info.userId}/usersfood/${info.id}`, {
+    return fetch(`${baseUrl}/users/${info.userId}/usersfood/${info.ids}`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
         "content-type": 'application/json'
-      },
+      }
     }).then(async (res) => {
       if(res.ok){
-        dispatch({type: "DELETE_USER_FOOD", payload: info.id})
+        dispatch({type: "DELETE_USER_FOOD", payload: info.ids})
       } else {
         return res.json()
           .then(errors => {
