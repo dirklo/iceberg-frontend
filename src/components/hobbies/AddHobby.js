@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { getHobbies } from '../../actions/hobby'
 import { addToUserHobbies, deleteUserHobby } from '../../actions/hobby'
-import { makeAvailableList, createItems, deleteItems } from '../../helpers/listHelpers'
+import { makeAvailableList, changePacket } from '../../helpers/listHelpers'
 
 const AddHobby = (props) => {
   let userHobbies = []
@@ -19,23 +19,12 @@ const AddHobby = (props) => {
   //[X] the action to add a users hobby will necessarily update the redux store for hobbies associated with the user and update the local list of all hobbies available on in the database
   
   const onChange = (newValue) => {
-    const createList = createItems(newValue, userHobbies)
-    if(createList.length > 0){
-      const packet = {
-        userId: userProfile.id,
-        hobbies: createItems(newValue, userHobbies)
-      }
-      addToUserHobbies(packet);
+    const packet = changePacket(userProfile, newValue, userHobbies)
+    if(packet.willCreate){
+      addToUserHobbies(packet.createPacket)
+    } else if(packet.willDelete){
+      deleteUserHobby(packet.deletePacket)
     }
-
-    const deleteList = deleteItems(newValue, userHobbies)
-    if(deleteList.length > 0 && createList.length === 0){
-      const deletePacket = {
-        userId: userProfile.id,
-        ids: deleteList.join(",")
-      }
-      deleteUserHobby(deletePacket)
-    } 
   }
 
   const { hobbiesLoaded } = props

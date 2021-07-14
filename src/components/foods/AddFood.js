@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { getFoods } from '../../actions/food'
 import { addToUserFoods, deleteUserFood } from '../../actions/food'
-import { makeAvailableList, createItems, deleteItems } from '../../helpers/listHelpers'
+import { makeAvailableList, changePacket } from '../../helpers/listHelpers'
 
 const AddFood = (props) => {
   let userFoods = []
@@ -19,23 +19,12 @@ const AddFood = (props) => {
   //[X] the action to add a users food will necessarily update the redux store for foods associated with the user and update the local list of all foods available on in the database
 
   const onChange = (newValue) => {
-    const createList = createItems(newValue, userFoods)
-    if(createList.length > 0){
-      const packet = {
-        userId: userProfile.id,
-        foods: createItems(newValue, userFoods)
-      }
-      addToUserFoods(packet);
+    const packet = changePacket(userProfile, newValue, userFoods)
+    if(packet.willCreate){
+      addToUserFoods(packet.createPacket)
+    } else if(packet.willDelete){
+      deleteUserFood(packet.deletePacket)
     }
-
-    const deleteList = deleteItems(newValue, userFoods)
-    if(deleteList.length > 0 && createList.length === 0){
-      const deletePacket = {
-        userId: userProfile.id,
-        ids: deleteList.join(",")
-      }
-      deleteUserFood(deletePacket)
-    }    
   }
 
   const { foodsLoaded } = props

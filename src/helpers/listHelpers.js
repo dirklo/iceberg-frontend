@@ -35,3 +35,22 @@ export function deleteItems(list, currentList){
     return item.id
   })
 }
+
+//I want to create a packet that will contain all information needed to action a change in a CreateableSelect Add component
+export function changePacket(userProfile, list, currentList){
+  const createdList = createItems(list, currentList)
+  const deleteList = deleteItems(list, currentList)
+  return {
+    willCreate: createdList.length > 0,
+    createPacket: createListPacket(userProfile.id, createdList),
+    willDelete: deleteList.length > 0 && createdList.length === 0,
+    deletePacket: createListPacket(userProfile.id, deleteList)
+  }
+}
+
+function createListPacket(userId, list){
+  return {
+    userId: userId,
+    items: list
+  }
+}
