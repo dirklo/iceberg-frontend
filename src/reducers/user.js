@@ -29,7 +29,7 @@ export default function usersState(state= initialState, action){
       return {...state, userProfile: userProfile}
     case "DELETE_USER_HOBBY":
       ids = action.payload.split(",")
-      let userHobbies = state.userProfile.foods.filter((hobby) => {
+      let userHobbies = state.userProfile.hobbies.filter((hobby) => {
         const result = ids.find(toDelete => toDelete === hobby.id)
         return result === undefined
       })

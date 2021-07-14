@@ -11,11 +11,7 @@ const AddFood = (props) => {
   if(props.userProfile.foods !== undefined){
     userFoods = props.userProfile.foods
   }  
-  const { userProfile } = props;
-  const {foodsList} = props;
-  const {getFoods} = props;
-  const { addToUserFoods } = props;
-  const { deleteUserFood } = props;
+  const { userProfile, foodsList, getFoods, addToUserFoods, deleteUserFood } = props;
   
   //[X] I want to display foods list minus any the user has already associated to them
   //[X] I want to add a selected food to the user

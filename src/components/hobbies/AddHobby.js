@@ -11,11 +11,7 @@ const AddHobby = (props) => {
   if(props.userProfile.hobbies !== undefined){
     userHobbies = props.userProfile.hobbies
   }  
-  const { userProfile } = props;
-  const {hobbiesList} = props;
-  const {getHobbies} = props;
-  const { addToUserHobbies } = props;
-  const { deleteUserHobby} = props;
+  const { userProfile, hobbiesList, getHobbies, addToUserHobbies, deleteUserHobby } = props;
   
   //[X] I want to display hobbies list minus any the user has already associated to them
   //[X] I want to add a selected hobby to the user
