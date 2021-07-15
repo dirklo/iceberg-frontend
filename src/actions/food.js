@@ -33,7 +33,7 @@ export const addToUserFoods = (info) => {
         Accept: 'application/json',
         "content-type": 'application/json'
       },
-      body: JSON.stringify({foods: info.foods})
+      body: JSON.stringify({foods: info.items})
     }).then(async (res) => {
       if(res.ok){
         return res
@@ -54,7 +54,7 @@ export const addToUserFoods = (info) => {
 
 export const deleteUserFood = (info) => {
   return async(dispatch) => {
-    return fetch(`${baseUrl}/users/${info.userId}/usersfood/${info.ids}`, {
+    return fetch(`${baseUrl}/users/${info.userId}/usersfood/${info.items}`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
@@ -62,7 +62,7 @@ export const deleteUserFood = (info) => {
       }
     }).then(async (res) => {
       if(res.ok){
-        dispatch({type: "DELETE_USER_FOOD", payload: info.ids})
+        dispatch({type: "DELETE_USER_FOOD", payload: info.items})
       } else {
         return res.json()
           .then(errors => {

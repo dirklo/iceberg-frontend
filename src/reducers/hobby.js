@@ -7,7 +7,7 @@ export const initialState = {
 export default function hobbiesState(state= initialState, action){
   switch(action.type) {
     case "FETCH_HOBBIES":
-      return {...state, hobbiesLoaded: true, hobbies: action.payload}
+      return {...state, hobbiesLoaded: true, hobbies: [...action.payload]}
     case "ADD_HOBBY_TO_HOBBIES":
       return {...state, hobbies: [...state.hobbies, action.payload]}
       case "ADD_HOBBIES":
@@ -15,7 +15,7 @@ export default function hobbiesState(state= initialState, action){
         for(let i = 0; i < action.payload.length; i++)  {
           newHobbies.push(action.payload[i])
         }
-       return {...state, foods: newHobbies}
+       return {...state, hobbies: [...newHobbies]}
     default:
       return state;
   }
