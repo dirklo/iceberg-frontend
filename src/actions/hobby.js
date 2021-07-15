@@ -1,4 +1,6 @@
 import { baseUrl } from './urlhelper'
+import { fetchHobbies, addHobbies } from '../reducers/hobby'
+import { updateHobbies, deleteHobbies } from '../reducers/user'
 
 export const getHobbies = () => {
   return async (dispatch) => {
@@ -13,7 +15,7 @@ export const getHobbies = () => {
         return res
           .json()
           .then((hobbiesJson) =>{
-            dispatch({type: "FETCH_HOBBIES", payload:hobbiesJson})
+            dispatch(fetchHobbies(hobbiesJson))
           })
       } else {
         return res.json()
@@ -39,8 +41,8 @@ export const addToUserHobbies = (info) => {
         return res
           .json()
           .then (resJson => {
-            dispatch({type: "ADD_TO_USER_HOBBIES", payload: resJson.added})
-            dispatch({type: "ADD_HOBBIES", payload: resJson.created})
+            dispatch(updateHobbies(resJson.added))
+            dispatch(addHobbies(resJson.created))
           })
       } else {
         return res.json()
@@ -63,7 +65,7 @@ export const deleteUserHobby = (info) => {
       },
     }).then(async (res) => {
       if(res.ok){
-        dispatch({type: "DELETE_USER_HOBBY", payload: info.items})
+        dispatch(deleteHobbies(info.items))
       } else {
         return res.json()
           .then(errors => {

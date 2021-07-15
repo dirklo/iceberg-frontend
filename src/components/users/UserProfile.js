@@ -29,7 +29,7 @@ function UserProfile(props){
     }
     return false
   }
-  console.log("reload:", reload(), "username:", username, "userId:", userId, "customPath:", customPath);
+  
   useEffect(() => {
     if (reload()){
       getUser(customPath);

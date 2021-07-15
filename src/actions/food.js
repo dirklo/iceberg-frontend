@@ -1,4 +1,6 @@
 import { baseUrl } from './urlhelper'
+import { updateFoods, deleteFoods } from '../reducers/user'
+import { fetchFoods, addFoods } from '../reducers/food'
 
 export const getFoods = () => {
   return async (dispatch) => {
@@ -13,7 +15,7 @@ export const getFoods = () => {
         return res
           .json()
           .then((foodsJson) =>{
-            dispatch({type: "FETCH_FOODS", payload:foodsJson});
+            dispatch(fetchFoods(foodsJson));
           })
       } else {
         return res.json()
@@ -39,8 +41,8 @@ export const addToUserFoods = (info) => {
         return res
           .json()
           .then (resJson => {
-            dispatch({type: "ADD_TO_USER_FOODS", payload: resJson.added})
-            dispatch({type: "ADD_FOODS", payload: resJson.created})
+            dispatch(updateFoods(resJson.added))
+            dispatch(addFoods(resJson.created))
           })
       } else {
         return res.json()
@@ -62,7 +64,7 @@ export const deleteUserFood = (info) => {
       }
     }).then(async (res) => {
       if(res.ok){
-        dispatch({type: "DELETE_USER_FOOD", payload: info.items})
+        dispatch(deleteFoods(info.items))
       } else {
         return res.json()
           .then(errors => {
