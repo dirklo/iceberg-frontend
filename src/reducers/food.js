@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+export const initialState = {
   foods: [],
   foodsLoaded: false
 }
@@ -10,6 +10,7 @@ const foodsSlice = createSlice({
   initialState: initialState,
   reducers: {
     fetchFoods(state, action){
+      console.log("action", action.payload);
       state.foods = action.payload
       state.foodsLoaded = true
     },
