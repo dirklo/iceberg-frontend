@@ -7,11 +7,7 @@ import { addToUserFoods, deleteUserFood } from '../../actions/food'
 import { makeAvailableList, changePacket } from '../../helpers/listHelpers'
 
 const AddFood = (props) => {
-  let userFoods = []
-  if(props.userProfile.foods !== undefined){
-    userFoods = props.userProfile.foods
-  }  
-  const { userProfile, foodsList, getFoods, addToUserFoods, deleteUserFood } = props;
+  const { userId, userFoods, foodsList, getFoods, addToUserFoods, deleteUserFood } = props;
   
   //[X] I want to display foods list minus any the user has already associated to them
   //[X] I want to add a selected food to the user
@@ -19,7 +15,7 @@ const AddFood = (props) => {
   //[X] the action to add a users food will necessarily update the redux store for foods associated with the user and update the local list of all foods available on in the database
 
   const onChange = (newList) => {
-    const packet = changePacket(userProfile.id, newList, userFoods)
+    const packet = changePacket(userId, newList, userFoods)
     if(packet.willCreate){
       addToUserFoods(packet.createPacket)
     } else if(packet.willDelete){
@@ -48,7 +44,8 @@ const AddFood = (props) => {
 export default connect(state => {
   return {
     foodsLoaded: state.foodsState.foodsLoaded,
-    foodsList: state.foodsState.foods,    
-    userProfile: state.usersState.userProfile
+    foodsList: state.foodsState.foods,  
+    userId: state.usersState.userProfile.id,
+    userFoods: state.usersState.userProfile.foods,
   }
 }, { getFoods, addToUserFoods, deleteUserFood })(AddFood);

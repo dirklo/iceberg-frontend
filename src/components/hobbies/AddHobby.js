@@ -7,10 +7,6 @@ import { addToUserHobbies, deleteUserHobby } from '../../actions/hobby'
 import { makeAvailableList, changePacket } from '../../helpers/listHelpers'
 
 const AddHobby = (props) => {
-  // let userHobbies = []
-  // if(props.userProfile.hobbies !== undefined){
-  //   userHobbies = props.userProfile.hobbies
-  // }  
   const { userId, userHobbies, hobbiesList, getHobbies, addToUserHobbies, deleteUserHobby } = props;
   
   //[X] I want to display hobbies list minus any the user has already associated to them
@@ -31,6 +27,7 @@ const AddHobby = (props) => {
   useEffect(() => {
     hobbiesLoaded === false && getHobbies();
   })
+  
   return (
     <div>
       <h4>AddHobby</h4>
