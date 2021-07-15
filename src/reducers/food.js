@@ -11,6 +11,7 @@ const foodsSlice = createSlice({
   reducers: {
     fetchFoods(state, action){
       state.foods = action.payload
+      state.foodsLoaded = true
     },
     addFoods(state, action){
       state.foods.push(...action.payload)
