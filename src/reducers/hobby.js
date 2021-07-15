@@ -12,6 +12,7 @@ const hobbiesSlice = createSlice({
   reducers: {
     fetchHobbies(state, action){
       state.hobbies = action.payload
+      state.hobbiesLoaded = true
     },
     addHobbies(state, action){
       state.hobbies.push(...action.payload)
