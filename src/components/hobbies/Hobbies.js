@@ -1,9 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux';
 import AddHobby from './AddHobby'
 
-function Hobbies (props){
-  
+export default function Hobbies (){
   return (
     <div>
       <h1>Hobbies</h1>
@@ -11,10 +9,3 @@ function Hobbies (props){
     </div>
   )
 }
-
-export default connect(state => {
-  return {
-    hobbies: state.hobbiesState.hobbies,    
-    userProfile: state.usersState.userProfile
-  }
-})(Hobbies);

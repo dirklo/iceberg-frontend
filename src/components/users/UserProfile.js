@@ -19,23 +19,22 @@ function UserProfile(props){
   const { customPath } = props.match.params
   const {currentUser} = props;
   const {getUser} = props;
-  const {userProfile} = props;
+  const {username, userId} = props;
 
   const reload = () => {
     if (isNaN(parseInt(customPath))) {
-      if (userProfile.username !== customPath) return true
+      if (username !== customPath) return true
     } else {
-      if (userProfile.id !== parseInt(customPath)) return true
+      if (userId !== parseInt(customPath)) return true
     }
     return false
   }
-
+  console.log("reload:", reload(), "username:", username, "userId:", userId, "customPath:", customPath);
   useEffect(() => {
     if (reload()){
       getUser(customPath);
     }
   })
-  
   return (
     <React.Fragment>
       {currentUser &&
@@ -121,6 +120,7 @@ UserProfile.defaultProps = {
 
 export default connect(state => {
   return {
-    userProfile: state.usersState.userProfile
+    username: state.usersState.userProfile.username,
+    userId: state.usersState.userProfile.id
   }
 }, { getUser })(UserProfile)

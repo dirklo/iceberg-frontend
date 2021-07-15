@@ -18,8 +18,8 @@ const AddFood = (props) => {
   //[X] when the server responds to the add request, I'll receive an array that includes foods added to the user along with another array that contains food added to the foods database
   //[X] the action to add a users food will necessarily update the redux store for foods associated with the user and update the local list of all foods available on in the database
 
-  const onChange = (newValue) => {
-    const packet = changePacket(userProfile, newValue, userFoods)
+  const onChange = (newList) => {
+    const packet = changePacket(userProfile.id, newList, userFoods)
     if(packet.willCreate){
       addToUserFoods(packet.createPacket)
     } else if(packet.willDelete){

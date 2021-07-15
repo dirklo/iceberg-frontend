@@ -7,19 +7,19 @@ import { addToUserHobbies, deleteUserHobby } from '../../actions/hobby'
 import { makeAvailableList, changePacket } from '../../helpers/listHelpers'
 
 const AddHobby = (props) => {
-  let userHobbies = []
-  if(props.userProfile.hobbies !== undefined){
-    userHobbies = props.userProfile.hobbies
-  }  
-  const { userProfile, hobbiesList, getHobbies, addToUserHobbies, deleteUserHobby } = props;
+  // let userHobbies = []
+  // if(props.userProfile.hobbies !== undefined){
+  //   userHobbies = props.userProfile.hobbies
+  // }  
+  const { userId, userHobbies, hobbiesList, getHobbies, addToUserHobbies, deleteUserHobby } = props;
   
   //[X] I want to display hobbies list minus any the user has already associated to them
   //[X] I want to add a selected hobby to the user
   //[X] when the server responds to the add request, I'll receive an array that includes hobbies added to the user along with another array that contains hobby added to the hobbies database
   //[X] the action to add a users hobby will necessarily update the redux store for hobbies associated with the user and update the local list of all hobbies available on in the database
   
-  const onChange = (newValue) => {
-    const packet = changePacket(userProfile, newValue, userHobbies)
+  const onChange = (newList) => {
+    const packet = changePacket(userId, newList, userHobbies)
     if(packet.willCreate){
       addToUserHobbies(packet.createPacket)
     } else if(packet.willDelete){
@@ -31,7 +31,6 @@ const AddHobby = (props) => {
   useEffect(() => {
     hobbiesLoaded === false && getHobbies();
   })
-  
   return (
     <div>
       <h4>AddHobby</h4>
@@ -49,6 +48,7 @@ export default connect(state => {
   return {
     hobbiesLoaded: state.hobbiesState.hobbiesLoaded,
     hobbiesList: state.hobbiesState.hobbies,    
-    userProfile: state.usersState.userProfile
+    userId: state.usersState.userProfile.id,
+    userHobbies: state.usersState.userProfile.hobbies
   }
 }, { getHobbies, addToUserHobbies, deleteUserHobby })(AddHobby);
