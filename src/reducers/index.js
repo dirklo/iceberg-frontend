@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import authReducer from "../reducers/auth";
-import usersState from "./user";
-import foodsState from './food';
-import hobbiesState from './hobby';
+import usersSlice from "./user";
+import foodsSlice from './food';
+import hobbiesSlice from './hobby';
 
 
 const initialState = { users: [], connectUsers: [] }
@@ -27,7 +27,7 @@ function appReducer(state=initialState, action) {
 export default combineReducers({
   auth: authReducer,
   appReducer: appReducer,
-  usersState: usersState,
-  foodsState: foodsState,
-  hobbiesState: hobbiesState
+  usersState: usersSlice,
+  foodsState: foodsSlice,
+  hobbiesState: hobbiesSlice
 });

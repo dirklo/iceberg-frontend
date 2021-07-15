@@ -1,4 +1,5 @@
 import { baseUrl } from './urlhelper'
+import { fetchUser } from '../reducers/user'
 
 const getUser = (id) => {
   return async (dispatch) => {
@@ -13,7 +14,7 @@ const getUser = (id) => {
         return res 
           .json()
           .then((userJson) => {
-            dispatch({type: "FETCH_USER", payload: userJson});
+            dispatch(fetchUser(userJson));
         })
       } else {
         return res.json().then((errors) => {
@@ -23,4 +24,4 @@ const getUser = (id) => {
     })
   }
 }
-export{getUser}
+export{ getUser }
